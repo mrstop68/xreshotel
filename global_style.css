@@ -1,0 +1,11 @@
+.logo {
+    height: 62px;
+    border-radius: 5px;
+}
+.footerlogo {
+    background-color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}

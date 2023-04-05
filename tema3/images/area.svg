@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="#ac926c" class="propery-theme-icon-fill" width="21.028" height="21.028" viewBox="0 0 21.028 21.028">
+    <g id="_001-area" data-name="001-area" transform="translate(21.028 21.028) rotate(180)">
+      <g id="Group_2327" data-name="Group 2327">
+        <g id="Group_2326" data-name="Group 2326">
+          <path id="Path_1501" data-name="Path 1501" d="M3.943,3.943H2.628V7.228H1.314V3.943H0V0H3.943V1.314H7.228V2.628H3.943ZM2.628,1.314H1.314V2.628H2.628Z"></path>
+          <path id="Path_1502" data-name="Path 1502" d="M3.943,7.228H0V3.286H1.314V0H2.628V3.286H3.943V4.6H7.228V5.914H3.943ZM2.628,4.6H1.314V5.914H2.628Z" transform="translate(0 13.8)"></path>
+          <path id="Path_1503" data-name="Path 1503" d="M3.286,7.228V5.914H0V4.6H3.286V3.286H4.6V0H5.914V3.286H7.228V7.228ZM5.914,4.6H4.6V5.914H5.914Z" transform="translate(13.8 13.8)"></path>
+          <rect id="Rectangle_851" data-name="Rectangle 851" width="1" height="1" transform="translate(9 18.445)"></rect>
+          <rect id="Rectangle_852" data-name="Rectangle 852" width="1" height="1" transform="translate(11 18.445)"></rect>
+          <rect id="Rectangle_853" data-name="Rectangle 853" width="1" height="1" transform="translate(11 2.445)"></rect>
+          <rect id="Rectangle_854" data-name="Rectangle 854" width="1" height="1" transform="translate(9 2.445)"></rect>
+          <rect id="Rectangle_855" data-name="Rectangle 855" width="1" height="1" transform="translate(1 8.445)"></rect>
+          <rect id="Rectangle_856" data-name="Rectangle 856" width="1" height="1" transform="translate(1 11.445)"></rect>
+          <rect id="Rectangle_857" data-name="Rectangle 857" width="1" height="1" transform="translate(19 11.445)"></rect>
+          <rect id="Rectangle_858" data-name="Rectangle 858" width="1" height="1" transform="translate(19 8.445)"></rect>
+          <path id="Path_1504" data-name="Path 1504" d="M5.914,7.228H4.6V3.943H3.286V2.628H0V1.314H3.286V0H7.228V3.943H5.914Zm0-5.914H4.6V2.628H5.914Z" transform="translate(13.8)"></path>
+        </g>
+      </g>
+    </g>
+  </svg>

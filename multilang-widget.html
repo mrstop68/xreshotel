@@ -1,0 +1,7 @@
+<script type="module" src="https://widget.resclick.com/rc-widget.min.js"></script>
+<!-- Booking Widget -->
+<rc-widget id="rs-widget" token="5f8d4ee036826400176efe3e" locale="<?php if(empty($langURL)){ echo 'tr';} else { echo $langURL;} ?>"></rc-widget>
+<script type="text/javascript" src="https://resclick.com/hotel-js/sensitivepremium.js"></script>
+
+
+<?php if((isset($pages->link)) && ($pages->link=='reservation'))echo 'id="tbres"' ?>

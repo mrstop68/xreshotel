@@ -1,0 +1,36 @@
+/* ------------------------------------------------------------ *\
+	Fonts
+\* ------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Trajan";
+  src: url("fonts/TrajanPro-Regular.eot");
+  src: url("fonts/TrajanPro-Regular.eot?#iefix") format("embedded-opentype"),
+    url("fonts/TrajanPro-Regular.woff2") format("woff2"), url("fonts/TrajanPro-Regular.woff") format("woff"),
+    url("fonts/TrajanPro-Regular.ttf") format("truetype"),
+    url("fonts/TrajanPro-Regular.svg#TrajanPro-Regular") format("svg");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-Regular.eot");
+  src: url("fonts/Gilroy-Regular.eot?#iefix") format("embedded-opentype"),
+    url("fonts/Gilroy-Regular.woff2") format("woff2"), url("fonts/Gilroy-Regular.woff") format("woff"),
+    url("fonts/Gilroy-Regular.ttf") format("truetype"), url("fonts/Gilroy-Regular.svg#Gilroy-Regular") format("svg");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
+  src: url("fonts/Gilroy-Medium.eot");
+  src: url("fonts/Gilroy-Medium.eot?#iefix") format("embedded-opentype"),
+    url("fonts/Gilroy-Medium.woff2") format("woff2"), url("fonts/Gilroy-Medium.woff") format("woff"),
+    url("fonts/Gilroy-Medium.ttf") format("truetype"), url("fonts/Gilroy-Medium.svg#Gilroy-Medium") format("svg");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}

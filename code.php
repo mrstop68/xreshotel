@@ -46,4 +46,15 @@ usort($activePage->content,function($first,$second){
     $randIMG=rand(0,$rr-1);
 
      if(isset($_GET['lang'])) $langURL=$_GET['lang'];
+
+        //dil apisindeki verileri (categoryimg) dile göre listeleme
+            foreach($dataLANG as $langContent){
+                if((empty($langURL)) && (strtolower($langContent->LangCode))=='mainlang') {
+                    $seoData=$langContent;
+                    break;
+                }else if ($langURL==(strtolower($langContent->LangCode))){
+                    $seoData=$langContent;
+                    break;
+                }
+            }
 ?>

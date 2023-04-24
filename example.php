@@ -96,5 +96,29 @@ $filtered_arr = array_filter(
     //         echo($content->content);
     //     }
     // }
+    // $array1=[
+    //     [
+    //         'isim'=>'musti',
+    //         'soyisim'=>'kusti'
+    //     ],
+    //     [
+    //         'meslek'=>'computer engineer',
+    //         'Age'=>'39'
+    //     ]
+    //     ];
+        $array1=[
+                'musti',
+                'kusti',
+                'meslek'=>'computer engineer',
+                'Age'=>'39'
+            
+            ];
+            echo '------------------......................';
+     echo(array_search('musti',$array1));
+    $sebzeler = array(
+        "meyveler" => array("portakal", "elma", "çilek"),
+        "sebzeler" => array("patates", "soğan", "havuç")
+    );
+     echo array_search('elma',$sebzeler['meyveler']);
 session_unset();
 session_destroy();

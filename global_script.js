@@ -70,4 +70,4 @@
             handleId.onclick = function() {
                 reservationWidget.classList.toggle("active");
             }
-        }
+        } 

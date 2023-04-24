@@ -1,6 +1,6 @@
     <footer>
         <?php 
-        //dil apisindeki verileri (content) dile göre listeleme
+        //dil apisindeki verileri (content) dile göre listeleme 
         foreach($dataLANG as $langContent){
             if((empty($langURL)) && (strtolower($langContent->LangCode))=='mainlang') {
                 $footerContent=$langContent->content;
@@ -16,13 +16,14 @@
         $endContent=$footerContent;
         array_pop($footerContent);
         ?>
-    <?php if((isset($dataHOTEL->seoinfo->slogan)) && ($dataHOTEL->seoinfo->slogan!='')){?>
+    <?php if((isset($seoData->slogan)) && ($seoData->slogan!='')){ ?>
         <div class="wrapfooter">
             <div class="footercontent">
-                <h4><?=$dataHOTEL->seoinfo->slogan?></h4>
+                <h4><?=$seoData->slogan?></h4>
+               
             </div>
         </div>
-    <?php } ?>
+    <?php } ?> 
         <div class="contactfooter">
             <div class="footercontent2">
                 <?php foreach($footerContent as $content) { ?>
@@ -34,34 +35,45 @@
                 <div class="fbody">
                     <h6><?=(end($endContent))->content?></h6>
                     <div class="footerli">
-                    <?php if((isset($dataHOTEL->seoinfo->youtube)) && ($dataHOTEL->seoinfo->youtube!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->youtube.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/youtube.svg" alt="'.$dataHOTEL->logo->logodescription.'"></a></div>';}?>
-                    <?php if(isset($dataHOTEL->seoinfo->facebook) && (($dataHOTEL->seoinfo->facebook)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->facebook.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/facebook.svg" alt="'.$dataHOTEL->logo->logodescription.'"></a></div>';}?>
-                    <?php if(isset($dataHOTEL->seoinfo->insta) && (($dataHOTEL->seoinfo->insta)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->insta.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/instagram.svg" alt="'.$dataHOTEL->logo->logodescription.'"></a></div>';}?>
-                    <?php if(isset($dataHOTEL->seoinfo->twitter) && ($dataHOTEL->seoinfo->twitter!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->twitter.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/twitter.svg" alt="'.$dataHOTEL->logo->logodescription.'"></a></div>';}?>
+                    <?php if((isset($dataHOTEL->seoinfo->youtube)) && ($dataHOTEL->seoinfo->youtube!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->youtube.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/youtube.svg" alt="'.$seoData->imagetag.'"></a></div>';}?>
+                    <?php if(isset($dataHOTEL->seoinfo->facebook) && (($dataHOTEL->seoinfo->facebook)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->facebook.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/facebook.svg" alt="'.$seoData->imagetag.'"></a></div>';}?>
+                    <?php if(isset($dataHOTEL->seoinfo->insta) && (($dataHOTEL->seoinfo->insta)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->insta.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/instagram.svg" alt="'.$seoData->imagetag.'"></a></div>';}?>
+                    <?php if(isset($dataHOTEL->seoinfo->twitter) && ($dataHOTEL->seoinfo->twitter!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->twitter.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema1/images/social/twitter.svg" alt="'.$seoData->imagetag.'"></a></div>';}?>
                     </div>
                 </div>
 
             </div>
             <hr>
-            <div class="footerlogo"><img src="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->logo->logoname))echo $dataHOTEL->logo->logoname?>" alt="<?=$dataHOTEL->logo->logodescription?>"></div>
+            <div class="footerlogo"><img src="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->logo->logoname))echo $dataHOTEL->logo->logoname?>" alt="<?=$seoData->imagetag?>"></div>
             <div class="fend">
                 <div class="endleft">
-                    <!-- <span><a href="" target="_blank"> KVKK & Çerez Politikası </a> | </span> -->
-                    <!-- <span><a href="" target="_blank"> Factsheet </a></span> -->
-                    <!-- <span id="ppSecurity" class="ppSecurity"> Aydınlatma Metni | </span> -->
-                    <!-- <span><a href="/KVKKBasvuruFormu.pdf" target="_blank"> KVKK Başvuru Formu </a> </span> -->
+                <?php
+                        if((empty($langURL))){
+                            
+                            foreach($dataPAGES as $pages){
+                                if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                    echo ' <span><a href="'.$pages->link.'">'.$pages->pagename.'</a></span><span class="lastChild"> | </span>';
+                                }
+                            }
+                        }else{
+                            foreach($dataPAGES as $pages){
+                                if(($langURL==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                    echo ' <span><a href="'.$pages->link.'">'.$pages->pagename.'</a></span><span class="lastChild"> | </span>';
+                                }
+                            }
+                        }
+                    ?>
                 </div>
                 <div class="endright">
                     <span class="copyy">Copyright © <?php echo date('Y') ?> All rights reserved | </span> 
-                    <a href="https://resclick.com/tr/" target="_blank"> <img alt="ResClick Theme | Resclick" src="https://resclick.com/images/resclick-logo-black.svg" alt="ResClick Theme" width="100"></a>
+                    <a href="https://resclick.com/tr/" target="_blank"> <img alt="<?=$seoData->imagetag?>" src="https://resclick.com/images/resclick-logo-black.svg" alt="<?=$seoData->imagetag?>" width="100"></a>
                 </div>
             </div>
         </div>
 
     </footer>
  
-    <div><a class="back" id="backtoTop" onclick="scrollToTop();return false;" href="#"><img alt="ResClick Theme" src="<?=$dataHOTEL->website?>/tema1/images/arrow.svg" alt="ResClick Theme" width="20"></a></div>
-   
+    <div><a class="back" id="backtoTop" onclick="scrollToTop();return false;" href="#"><img alt="<?=$seoData->imagetag?>" src="<?=$dataHOTEL->website?>/tema1/images/arrow.svg" alt="<?=$seoData->imagetag?>" width="20"></a></div>
                   
     <script>
         function scrollToTop() {
@@ -73,16 +85,11 @@
         window.onscroll = function() {
             scrollFunction()
         };
-
         function scrollFunction() {
             if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
                 document.getElementById("backtoTop").style.display = "block";
-
-
             } else {
                 document.getElementById("backtoTop").style.display = "none";
-
             }
-
         }
     </script>

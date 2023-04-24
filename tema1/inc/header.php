@@ -1,4 +1,11 @@
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','<?php if(isset($dataCODES->gtm)) echo $dataCODES->gtm?>');</script>
+    <!-- End Google Tag Manager -->
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php if(isset($dataCODES->gtm)) echo $dataCODES->gtm; ?>"
@@ -7,7 +14,7 @@
     <header>
         <div class="nav-wrapper">
             <div class="logo-container">
-                <a href="<?php if(empty($langURL)){echo $dataHOTEL->website;}else{ echo $dataHOTEL->website.'/'.$langURL.'/';} ?>"><img class="logo" src="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?php if(isset($dataHOTEL->logo->logodescription)) echo $dataHOTEL->logo->logodescription; ?>"></a>
+                <a href="<?php if(empty($langURL)){echo $dataHOTEL->website;}else{ echo $dataHOTEL->website.'/'.$langURL.'/';} ?>"><img class="logo" src="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"></a>
             </div>
             <!-- <?php echo $langURL ?> -->
             <nav>
@@ -35,22 +42,22 @@
                         <?php if(isset($dataLANG[1]->LangCode)){ //dil menu start?> 
                             <div class="dropdown">
                                 <?php if(empty($langURL)){ // ana header üzerinde görünecek dil?>
-                                    <li class="nav-tab"><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="language" width="26"> <?=$dataHOTEL->LangCode?></li>
+                                    <li class="nav-tab"><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></li>
                                 <?php }else { ?>
-                                    <li class="nav-tab"><img src="<?=$panelURL?>/img/flag/<?=strtoupper($langURL)?>.svg" alt="language" width="26"> <?=strtoupper($langURL)?></li>
+                                    <li class="nav-tab"><img src="<?=$panelURL?>/img/flag/<?=strtoupper($langURL)?>.svg" alt="<?=$seoData->imagetag?>" width="26"> <?=strtoupper($langURL)?></li>
                                 <?php }  ?>
                                 <div class="dropdown-content">
                             <?php  
                                 if(empty($langURL)){// header üzerindeki dili tıklayınca listelenen diller
                                     foreach($dataLANG as $langs){ ?>
                                     <?php if(($langs->LangCode)!='mainlang'){ ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="language" width="26"> <?=$langs->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
                                     <?php } } ?>
                                 <?php }else{  ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/" ><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="language" width="26"> <?=$dataHOTEL->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/" ><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></a></li>
                                     <?php foreach($dataLANG as $langs){ ?>
                                     <?php if((strtolower($langs->LangCode))!=$langURL && ($langs->LangCode)!='mainlang'){ ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="language" width="26"> <?=$langs->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
                                     <?php } } } ?>
                             </div>
                         </div>

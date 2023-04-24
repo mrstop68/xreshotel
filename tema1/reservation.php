@@ -3,25 +3,30 @@
 <html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','<?php if(isset($dataCODES->gtm)) echo $dataCODES->gtm?>');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php if(isset($dataHOTEL->seoinfo->title))?></title>
+    <title><?php if(isset($seoData->title))echo $seoData->title?></title>
     <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
     <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
-    <meta name="description" content="<?php if(isset($dataHOTEL->seoinfo->description))echo $dataHOTEL->seoinfo->description?>" />
-    <meta property="og:site_name" content="<?php if(isset($dataHOTEL->seoinfo->title))echo $dataHOTEL->seoinfo->title?>" />
-    <meta name="classification" content="<?php if(isset($dataHOTEL->seoinfo->title))echo $dataHOTEL->seoinfo->title?>" />
-    <meta name="abstract" content="@ResClick" />
+    <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="abstract" content="Hotel Website" />
     <meta name="twitter:creator" content="@ResClick" />
     <meta name="twitter:card" content="ResClick" />
+    <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
+    <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
+    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <link rel="alternate" hreflang="tr" href="<?php if(isset($dataHOTEL->website)) echo $dataHOTEL->website?>" />
+     <?php  
+        foreach($dataLANG as $data){?>
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <?php
+        }
+    ?> 
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/fonts.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/swiper-bundle.min.css" />
@@ -54,6 +59,15 @@
     <?php include 'inc/footer.php' ?>
     <?php include 'global_html.php' ?>
     <?php include 'widget.php' ?>
+    <style>
+        .menu-btn .menu {
+            display: block;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background: #111;
+        }
+    </style>
     <script src="<?=$dataHOTEL->website?>/tema1/js/script.js"></script>
     <!-- Swiper JS -->
     <script src="<?=$dataHOTEL->website?>/tema1/js/swiper-bundle.min.js"></script> 
@@ -122,5 +136,6 @@
         });
     </script>
     <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
+    <?php include 'geoip.php' ?>
     </body>
 </html>

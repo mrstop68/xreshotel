@@ -105,14 +105,18 @@ section {
     z-index: 2;
 }
 
-@media (max-width: 640px) {
-    .section-header h2 {
-        font-size: 28px;
-        margin-bottom: 15px;
-    }
-    .section-header span {
-        font-size: 38px;
-    }
+.carousel-inner {
+    max-height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.carousel-item img {
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .btn-light {
@@ -365,6 +369,7 @@ section {
     transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
+    max-height: 70px;
 }
 
 .header.sticked {
@@ -375,9 +380,10 @@ section {
 
 .header .logo img {
     margin-right: 6px;
-    max-width: 211px;
+    /* max-width: 211px; */
     background-color: #fff;
-    border-radius: 5px;
+    margin-top: 16px;
+    max-height: 90px;
 }
 
 .header .logo h1 {
@@ -386,6 +392,22 @@ section {
     font-weight: 700;
     color: #fff;
     font-family: var(--font-primary);
+}
+
+@media (max-width: 640px) {
+    .section-header h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    .section-header span {
+        font-size: 38px;
+    }
+    .carousel-inner {
+        margin-top: 70px;
+    }
+    .header {
+        background: rgba(14, 29, 52);
+    }
 }
 
 @media (min-width: 1280px) {

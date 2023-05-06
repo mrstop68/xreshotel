@@ -20,10 +20,9 @@
     <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
     <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
-    <link rel="alternate" hreflang="tr" href="<?php if(isset($dataHOTEL->website)) echo $dataHOTEL->website?>" />
-     <?php  
+    <?php  
         foreach($dataLANG as $data){?>
-            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo strtolower($dataHOTEL->LangCode); } else {echo strtolower($data->LangCode);} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo strtolower($dataHOTEL->LangCode); } else {echo strtolower($data->LangCode);}?>/" />
             <?php
         }
     ?> 
@@ -45,8 +44,8 @@
                 <div class="contacttBody contact-detail">
                     <ul>
                         <li><?php if(isset($activePage->content[0]->content)){echo $activePage->content[0]->content;} ?> <span><?=$seoData->adress?></span></li>
-                        <li><?php if(isset($activePage->content[1]->content)){echo $activePage->content[1]->content;} ?> <a href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><span id="phonecontact"><?=$dataHOTEL->seoinfo->phone1?></span></a></li>
-                        <li><?php if(isset($activePage->content[2]->content)){echo $activePage->content[2]->content;} ?> <a href="tel:<?=$dataHOTEL->seoinfo->phone2?>"><span id="phonecontact"><?=$dataHOTEL->seoinfo->phone2?></span></a></li>
+                        <li><?php if(isset($activePage->content[1]->content)){echo $activePage->content[1]->content;} ?> <a  id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><span><?=$dataHOTEL->seoinfo->phone1?></span></a></li>
+                        <li><?php if(isset($activePage->content[2]->content)){echo $activePage->content[2]->content;} ?> <a id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone2?>"><span ><?=$dataHOTEL->seoinfo->phone2?></span></a></li>
                         <li><?php if(isset($activePage->content[3]->content)){echo $activePage->content[3]->content;} ?> <a href="mailto:<?=$dataHOTEL->seoinfo->email?>"><span><?=$dataHOTEL->seoinfo->email?></span></a></li>
                     </ul>
                     <hr>

@@ -1,24 +1,37 @@
+<?php include 'code.php' ?>
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResClick Tema 2</title>
-    <link rel="apple-touch-icon" href="images/icon.png" />
-    <link rel="icon" href="images/icon.png" />
-    <meta name="description" content="ResClick Theme 2" />
-    <meta property="og:site_name" content="ResClick Theme 2" />
-    <meta name="classification" content="ResClick Theme 2" />
-    <meta name="abstract" content="ResClick Theme 2" />
+    <title><?php if(isset($seoData->title))echo $seoData->title?></title>
+    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="abstract" content="Hotel Website" />
     <meta name="twitter:creator" content="@ResClick" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-icons/bootstrap-icons.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/sub.css" />
-    <link rel="stylesheet" href="css/swiper-bundle.css" />
+    <meta name="twitter:card" content="ResClick" />
+    <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
+    <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
+    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+     <?php  
+        foreach($dataLANG as $data){?>
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <?php
+        }
+    ?> 
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/style.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/sub.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/swiper-bundle.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
 <style>
         .swiper {
         width: 100%;
@@ -59,8 +72,6 @@
         height: 100%;
         object-fit: cover;
       }
-
-
 </style>
     <?php include 'inc/header.php' ?> 
     
@@ -79,7 +90,7 @@
       <div class="swiper-wrapper">
       <?php for ($i = 1; $i <= 6; $i++) { ?>
             <div class="swiper-slide">
-                <img alt="ResClick Image" src="images/home/<?php echo $i ?>.webp" />
+                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
             </div>
 
         <?php } ?>
@@ -92,7 +103,7 @@
 
         <?php for ($i = 1; $i <= 6; $i++) { ?>
             <div class="swiper-slide">
-                <img alt="ResClick Image" src="images/home/<?php echo $i ?>.webp" />
+                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
             </div>
 
         <?php } ?>
@@ -136,12 +147,15 @@
     </div>	
 </section>
 <!-- mid-content -->
-
+    <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/swiper-bundle.js"></script>
+    <script src="<?=$dataHOTEL->website?>/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=$dataHOTEL->website?>/js/script.js"></script>
+    <script src="<?=$dataHOTEL->website?>/js/swiper-bundle.js"></script>
+    <?php include 'widget.php' ?>
+    <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
+    <?php include 'geoip.php' ?>
     <script>
       var swiper = new Swiper(".mySwiper", {
         spaceBetween: 10,

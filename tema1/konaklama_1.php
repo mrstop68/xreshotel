@@ -20,13 +20,12 @@
     <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
     <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
-    <link rel="alternate" hreflang="tr" href="<?php if(isset($dataHOTEL->website)) echo $dataHOTEL->website?>" />
-     <?php  
+    <?php  
         foreach($dataLANG as $data){?>
-            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo strtolower($dataHOTEL->LangCode); } else {echo strtolower($data->LangCode);} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo strtolower($dataHOTEL->LangCode); } else {echo strtolower($data->LangCode);}?>/" />
             <?php
         }
-    ?> 
+    ?>  
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/fonts.css">
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/swiper-bundle.min.css" />

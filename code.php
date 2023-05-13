@@ -1,5 +1,5 @@
 <?php
-// pages apisindeki içerik(content) alanlarını sayfaya göre listeleme
+// pages apisindeki içerik(content) alanlarını sayfaya göre listeleme 
 if((empty($_GET['lang']))){
     foreach($dataPAGES as $pages){
         if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && ($pages->link==$locationURL)){ //url de dil kodu yoksa 
@@ -30,7 +30,7 @@ else{
 usort($activePage->content,function($first,$second){
     return $first->order - $second->order;
 });
-//images apisindeki Anasayfa resimleri
+//images apisindeki aktif sayfa resimlerini tespit etme
         $newArrayImg=[];
         $filtered_img = array_filter(
         $dataIMG,

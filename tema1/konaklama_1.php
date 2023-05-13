@@ -40,7 +40,6 @@
             height: 360px;
             box-sizing: border-box;
         }
-
     </style>
     <?php include 'inc/header.php' ?>
     <section>
@@ -57,7 +56,11 @@
             <?php 
             $n=0;
             $num=0;
-            foreach($activePage->content as $content){ ?>
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group1=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==1;
+             });
+            foreach($group1 as $content){ ?>
             
              <?php if($n%2==0) { ?>
                 <div class="rbody">
@@ -139,6 +142,22 @@
             <?php  }  ?>
             <?php $n++; } ?>
         </div>
+    </section>
+    <section>
+        <?php 
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group2=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==2;
+             });
+            foreach($group2 as $content){ ?>
+                <div class="rcontainer">
+                    <div class="card-body">
+                        <p>
+                            <?=$content->content?>
+                        </p>
+                    </div>
+                </div>
+        <?php } ?>
     </section>
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>

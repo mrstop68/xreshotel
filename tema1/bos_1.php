@@ -53,6 +53,7 @@
         <!-- <h3><?=$activePage->pagename?></h3> -->
             <?php foreach($activePage->content as $content){ ?>
             <?=$content->content?>
+            <br><br>
             <?php  }  ?>
             <br>
         </div>

@@ -48,10 +48,11 @@
     <section>
     <?php 
             $num=1;
-            $pageContents=$activePage->content;
-            array_pop($pageContents);
-            foreach($pageContents as $content){ 
-                $randIMG2=rand(0,$randIMG);
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group1=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==1;
+             });
+            foreach($group1 as $content){
                 ?>
         <div class="rcontainer">
             <?=$content->content?>
@@ -64,7 +65,12 @@
     </section>
     <section>
         <div class="rcontainer">
-            <h3><?=((end($activePage->content))->content)?></h3>
+            <?php  //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group2=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==2;
+             }); foreach($group2 as $content){ ?>
+            <h3><?=$content->content?></h3>
+            <?php  } ?>
             <div class="gallery-container" id="animated-thumbnails-gallery">
                 <?php foreach ($newArrayImg as $k=>$img) { ?>
                     <a data-lg-size="1600-1144" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide 4" class="gallery-item" data-src="<?=$apiURL?>/img/<?=$img->imgName?>">

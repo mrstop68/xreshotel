@@ -43,13 +43,45 @@
             <div class="contactContent">
                 <div class="contacttBody contact-detail">
                     <ul>
-                        <li><?php if(isset($activePage->content[0]->content)){echo $activePage->content[0]->content;} ?> <span><?=$seoData->adress?></span></li>
-                        <li><?php if(isset($activePage->content[1]->content)){echo $activePage->content[1]->content;} ?> <a  id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><span><?=$dataHOTEL->seoinfo->phone1?></span></a></li>
-                        <li><?php if(isset($activePage->content[2]->content)){echo $activePage->content[2]->content;} ?> <a id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone2?>"><span ><?=$dataHOTEL->seoinfo->phone2?></span></a></li>
-                        <li><?php if(isset($activePage->content[3]->content)){echo $activePage->content[3]->content;} ?> <a href="mailto:<?=$dataHOTEL->seoinfo->email?>"><span><?=$dataHOTEL->seoinfo->email?></span></a></li>
+                        <?php 
+                         //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+                        $group1=array_filter($activePage->content,function($data){
+                            return $data->sectionGroup==1;
+                        });
+                        foreach($group1 as $content){
+                        ?>
+                        <li><?=$content->content?><span><?=$seoData->adress?></span></li>
+                        <?php } ?>
+                        <?php $group2=array_filter($activePage->content,function($data){
+                            return $data->sectionGroup==2;
+                        });
+                        foreach($group2 as $content){
+                        ?>
+                        <li><?=$content->content?><?php if($dataHOTEL->seoinfo->phone1){ ?><a  id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><span><?=$dataHOTEL->seoinfo->phone1?></span></a><?php } ?></li>
+                        <?php } ?>
+                        <?php $group3=array_filter($activePage->content,function($data){
+                            return $data->sectionGroup==3;
+                        });
+                        foreach($group3 as $content){
+                        ?>
+                        <li><?=$content->content?><?php if($dataHOTEL->seoinfo->phone2){ ?><a  id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->phone2?>"><span><?=$dataHOTEL->seoinfo->phone2?></span></a><?php } ?></li>
+                        <?php } ?>
+                        <?php $group4=array_filter($activePage->content,function($data){
+                            return $data->sectionGroup==4;
+                        });
+                        foreach($group4 as $content){
+                        ?>
+                        <li><?=$content->content?><?php if($dataHOTEL->seoinfo->email){ ?><a  id="phonecontact" href="tel:<?=$dataHOTEL->seoinfo->email?>"><span><?=$dataHOTEL->seoinfo->email?></span></a><?php } ?></li>
+                        <?php } ?>
                     </ul>
                     <hr>
-                    <?php if(isset($activePage->content[4]->content)){echo $activePage->content[4]->content;} ?>
+                    <?php $group5=array_filter($activePage->content,function($data){
+                            return $data->sectionGroup==5;
+                        });
+                        foreach($group5 as $content){
+                        ?>
+                    <?=$content->content ?>
+                    <?php } ?>
                 </div>
                 <div class=" contacttBody">
                 <iframe src="<?php if(isset($dataHOTEL->seoinfo->maps)){echo $dataHOTEL->seoinfo->maps;}?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

@@ -40,12 +40,7 @@
             height: 375px;
             box-sizing: border-box;
         }
-
-        @media screen and (max-width: 860px) {
-            .rbody:nth-child(even) .rcontent:nth-child(1) {
-                order: 1;
-            }
-        }
+        
     </style>
     <?php include 'inc/header.php' ?>
     <section>
@@ -63,7 +58,11 @@
         <?php 
             $n=0;
             $num=0;
-            foreach($activePage->content as $content){ ?>
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group1=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==1;
+             });
+            foreach($group1 as $content){ ?>
             
              <?php if($n%2==0) { ?>
             <div class="rbody">
@@ -126,10 +125,87 @@
             <?php  }  ?>
             <?php $n++; } ?>
         </div>
-
-       
     </section>
+    <section>
+    <div class="fixedimg2" style="background-image:url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$randIMG+1]->imgName)) {echo $newArrayImg[$randIMG+1]->imgName;}else if(isset($newArrayImg[$randIMG-1]->imgName)){echo $newArrayImg[$randIMG-1]->imgName;}else {echo $newArrayImg[$randIMG]->imgName;}?>') ;"></div>
+    </section>
+    <section>
+        <div class="rcontainer">
+        <?php 
+            $n=0;
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group2=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==2;
+             });
+            foreach($group2 as $content){ ?>
+            
+             <?php if($n%2==0) { ?>
+            <div class="rbody">
+                <div class="rcontent hr45">
+                    <div class="roomPropertySub">
+                    <?=$content->content?>
+                    </div>
 
+                </div>
+                <div class="rcontent hr45">
+                    <!-- Swiper -->
+                    <div class="swiper mySwiperroom2">
+                        <div class="swiper-wrapper">
+                        <?php 
+                                if (isset($content->showpicturenumber))
+                                    {$picnumber=$content->showpicturenumber+$num;}
+                                    else {$picnumber=1+$num; }
+                                while ( $num < $picnumber ) { ?>
+                                    <div class="swiper-slide">
+                                    <img alt="<?=$seoData->imagetag?>" src="<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" />
+                                    </div>
+                                <?php $num++; } ?>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <?php  } 
+             else { ?>
+             <div class="rbody">
+             <div class="rcontent hr45">
+                    <!-- Swiper -->
+                    <div class="swiper mySwiperroom2">
+                        <div class="swiper-wrapper">
+                        <?php 
+                                if (isset($content->showpicturenumber))
+                                    {$picnumber=$content->showpicturenumber+$num;}
+                                    else {$picnumber=1+$num; }
+                                while ( $num < $picnumber ) { ?>
+                                    <div class="swiper-slide">
+                                    <img alt="<?=$seoData->imagetag?>" src="<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" />
+                                    </div>
+                                <?php $num++; } ?>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="rcontent hr45">
+                    <div class="roomPropertySub">
+                    <?=$content->content?>
+                    </div>
+
+                </div>
+                
+            </div>
+            <?php  }  ?>
+            <?php $n++; } ?>
+        </div>
+    </section>
+    <?php if(!empty($group2)){ ?>
+    <section>
+    <div class="img-top" style="background-image:url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$randIMG+2]->imgName)) {echo $newArrayImg[$randIMG+2]->imgName;}else if(isset($newArrayImg[$randIMG-2]->imgName)){echo $newArrayImg[$randIMG-2]->imgName;}else {echo $newArrayImg[$randIMG]->imgName;}?>') ;"></div>
+    </section>
+    <?php } ?>
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     <?php include 'widget.php' ?>

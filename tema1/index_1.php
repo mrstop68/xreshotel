@@ -50,8 +50,12 @@
         </div>
     </section>
             <?php
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+             $group1=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==1;
+             });
                 $num=0;
-                        foreach($activePage->content as $content){
+                        foreach($group1 as $content){
                 ?>
                     <section>
                     <div class="wrapper">
@@ -65,37 +69,33 @@
                         </div>
                     </div>
                 </section>
-            <?php (count($filtered_img)); if(($num)==3){break;};$num++; } ?>
-    
-        <?php 
-        $contentNumber= (count($activePage->content));
-        //aşağıdaki satırda content dizisindeki içeriklerden ilk dördünü çıkarıyoruz.
-        array_splice($activePage->content,0,4);
-        if($contentNumber>=5){        
-        ?>
+            <?php (count($filtered_img)); $num++;  } ?>
         <section>
             <div class="wrapperContainer">
-            <?php $num++;
-                    foreach($activePage->content as $content){
+            <?php 
+            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+            $group2=array_filter($activePage->content,function($data){
+                return $data->sectionGroup==2;
+             });
+            $num++;
+                    foreach($group2 as $content){
                 ?>
                     <div class="wcontent"><img src="<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>">
                             <div class="wbody">
                                 <h3><?=$content->content?></h3>
                             </div>
                     </div>
-                    <?php if(($num)==6){break;};$num++; } ?>
+                    <?php $num++; } ?>
                 </div>
     </section>
-    <?php } ?>
-    <?php 
-        $contentNumber2= (count($activePage->content));
-        if($contentNumber2>=4){        
-        ?>
     <section>
-    <?php $num++;
-                //aşağıdaki satırda content dizisindeki içeriklerden ilk 8(önceden 4 çıkarılmıştı) çıkarıyoruz.
-                array_splice($activePage->content,0,3);
-                    foreach($activePage->content as $content){
+    <?php 
+    //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+    $group3=array_filter($activePage->content,function($data){
+        return $data->sectionGroup==3;
+     });
+    $num++;
+                    foreach($group3 as $content){
                 ?>
         <div class="wrapper">
             <div class="back-img" style="background-image: url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>');">
@@ -109,7 +109,6 @@
         </div>
         <?php $num++; } ?>
     </section>
-    <?php } ?>
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     <script src="<?=$dataHOTEL->website?>/tema1/js/script.js"></script>

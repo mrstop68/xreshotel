@@ -40,7 +40,14 @@
             height: 360px;
             box-sizing: border-box;
         }
-
+        @media screen and (max-width: 860px) {
+            .rbody:nth-child(even) .rcontent:nth-child(1) {
+                order: 0;
+            }
+            .rbody:nth-child(odd) .rcontent:nth-child(1) {
+                order: 1;
+            }
+        }
     </style>
     <?php include 'inc/header.php' ?>
     <section>

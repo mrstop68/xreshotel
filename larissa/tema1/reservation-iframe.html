@@ -1,0 +1,29 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<div class="reservation-widget hotelDetails hotelReservationSteps reservation" id="tb-reservation" style="background: #fff;margin-bottom: 15px"></div>
+<script type="text/javascript">
+    var TB = {
+        data : {
+            adult : 2,
+            child : 0,
+            childAge : [],
+            hotelId : 'baca9cd1ce1049a89d8f7979a003fed9',
+            agencyId: 'c899b358ad494e5786a41bfd2a5fc820',
+            subsidiaryId:0,
+            agentId: '6008',
+            productType : 'hotel',
+            version: Math.random(),
+            hotelPhone:''
+        },
+        error: function(){
+            alert('Hata oluştu! Lütfen daha sonra tekrar deneyiniz.');
+        }
+    };
+    (function(d, s, id) {
+        var js, tbjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//www.tatilbudur.com/themes/tbnew/assets/widgets/reservation/tatilbudur-widgets.js?ver="+TB.data.version;
+        tbjs.parentNode.insertBefore(js, tbjs);
+    }(document, 'script', 'tb-jssdk'));
+</script>

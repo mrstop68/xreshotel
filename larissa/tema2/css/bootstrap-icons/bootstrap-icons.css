@@ -1,0 +1,60 @@
+@font-face {
+  font-display: block;
+  font-family: "bootstrap-icons";
+  src: url("./fonts/bootstrap-icons.woff2?8d200481aa7f02a2d63a331fc782cfaf")
+      format("woff2"),
+    url("./fonts/bootstrap-icons.woff?8d200481aa7f02a2d63a331fc782cfaf")
+      format("woff");
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: bootstrap-icons !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.bi-list::before {
+  content: "\f479";
+}
+.bi-x::before {
+  content: "\f62a";
+}
+
+.bi-twitter::before {
+  content: "\f5ef";
+}
+.bi-facebook::before {
+  content: "\f344";
+}
+.bi-instagram::before {
+  content: "\f437";
+}
+.bi-youtube::before {
+  content: "\f62b";
+}
+.bi-pin-map::before {
+  content: "\f64c";
+}
+.bi-telephone::before {
+  content: "\f5c1";
+}
+.bi-envelope::before {
+  content: "\f32f";
+}
+.bi-chevron-up::before {
+  content: "\f282";
+}
+.bi-chevron-down::before {
+  content: "\f282";
+}
+.bi-map::before {
+  content: "\f47f";
+}

@@ -1,9 +1,11 @@
 <?php
-// $apiURL="http://localhost:3000";
-// $hotelid="6421a122a02049bc8f67f45b";
-$apiURL="https://micro-panel-api.resclick.com";
-$hotelid="6450bc8547b84b85dfa4150f";
+$apiURL="http://localhost:3000";
+$hotelid="6479f33add6a381872c3207e";
+// $apiURL="https://micro-panel-api.resclick.com";
+// $hotelid="6450bc8547b84b85dfa4150f";
+
 $panelURL="https://webpanel.resclick.com";
+$imagesLink='https://webpanel-cdn1.resclick.com/';
 
 $urlIMG = "$apiURL/images/$hotelid";
 $urlHOTEL = "$apiURL/hotels/$hotelid";
@@ -34,7 +36,7 @@ $dataPAGES = json_decode($resultPAGES);
 $dataCODES = json_decode($resultCODES);
 $dataLANG = json_decode($resultLANG);
 
-// error_reporting(0);
+ error_reporting(0);
       //widget print to file
       if(file_exists('widget.php') && (isset($dataCODES->widget))) {
          $dosya = fopen('widget.php', 'w');

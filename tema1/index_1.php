@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -39,8 +39,8 @@
             <div class="swiper-wrapper">
                 <?php
                 foreach($dataIMG as $k=>$img){
-                        // if( $img->slider ) {echo  '<div class="swiper-slide" style="background-image: url('.$apiURL.'//img/'.$img->imgName.'); background-position: center;background-size: cover;"></div>';}
-                        if($img->slider === true) {?><div class="swiper-slide" style="background-image: url('<?=$apiURL?>/img/<?=$img->imgName?>'); background-position: center;background-size: cover;"></div> <?php }
+                        // if( $img->slider ) {echo  '<div class="swiper-slide" style="background-image: url('.$imagesLink.'//img/'.$img->imgName.'); background-position: center;background-size: cover;"></div>';}
+                        if($img->slider === true) {?><div class="swiper-slide" style="background-image: url('<?=$imagesLink?><?=$img->imgName?>'); background-position: center;background-size: cover;"></div> <?php }
                 }
                 ?>
             </div>
@@ -59,7 +59,7 @@
                 ?>
                     <section>
                     <div class="wrapper">
-                        <div class="back-img" style="background-image: url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>')">
+                        <div class="back-img" style="background-image: url('<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>')">
                             <div class="containerr">
                                 <div class="contentt">
                                     <?php if($num%2!=0) { echo '<div class="bodyy bodyLeft">'.$content->content.'</div>'; } else { echo '<div class="bodyy"></div>'; }  ?>
@@ -79,7 +79,7 @@
              });
                     foreach($group2 as $content){
                 ?>
-                    <div class="wcontent"><img src="<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>">
+                    <div class="wcontent"><img src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>">
                             <div class="wbody">
                                 <h3><?=$content->content?></h3>
                             </div>
@@ -96,7 +96,7 @@
                     foreach($group3 as $content){
                 ?>
         <div class="wrapper">
-            <div class="back-img" style="background-image: url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>');">
+            <div class="back-img" style="background-image: url('<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>');">
                 <div class="containerr">
                     <div class="contentt">
                     <?php if($num%2==0) { echo '<div class="bodyy bodyLeft">'.$content->content.'</div>'; } else { echo '<div class="bodyy"></div>'; }  ?>

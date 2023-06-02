@@ -1,8 +1,8 @@
 <?php
-$apiURL="http://localhost:3000";
-$hotelid="64636a68e4171d71ec33b13a";
-// $apiURL="https://micro-panel-api.resclick.com";
-// $hotelid="646367129e22f52da987c387";
+// $apiURL="http://localhost:3000";
+// $hotelid="64636a68e4171d71ec33b13a";
+$apiURL="https://micro-panel-api.resclick.com";
+$hotelid="646367129e22f52da987c387";
 $panelURL="https://webpanel.resclick.com";
 
 $urlIMG = "$apiURL/images/$hotelid";

@@ -1,4 +1,4 @@
-Redirect 301 /larissa-p /larissa-p/
+Redirect 301 /larissa /larissa/
 RewriteEngine On
 RewriteRule  ^([0-9a-zA-Z-_/]+)/([0-9a-zA-Z-_/]+)$ index.php?lang=$1&page=$2 [NC,L]
 RewriteRule  ^([0-9a-zA-Z-_/]+)/$ index.php?lang=$1 [NC,L]

@@ -17,7 +17,7 @@
             <div class="logo-container">
                 <a href="<?php if(empty($langURL)){echo $dataHOTEL->website;}else{ echo $dataHOTEL->website.'/'.$langURL.'/';} ?>"><img class="logo" src="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"></a>
             </div>
-            <?php echo $langURL ?>
+            <!-- <?php echo $langURL ?> -->
             <nav>
                 <input class="hidden" type="checkbox" id="menuToggle">
                 <label class="menu-btn" for="menuToggle">

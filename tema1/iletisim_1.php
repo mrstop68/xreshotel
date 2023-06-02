@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
     <?php include 'inc/header.php' ?>
     <section>
-        <div class="img-top" style="background-image:url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>')">
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>')">
 
         </div>
     </section>

@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?><?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -43,7 +43,7 @@
     </style>
     <?php include 'inc/header.php' ?>
     <section>
-        <div class="img-top" style="background-image:url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[0]->imgName)) echo $newArrayImg[0]->imgName?>')"></div>
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[0]->imgName)) echo $newArrayImg[0]->imgName?>')"></div>
     </section>
     <section>
     <?php 
@@ -58,7 +58,7 @@
             <?=$content->content?>
         </div>
 
-        <div class="fixedimg2" style="background-image:url('<?=$apiURL?>/img/<?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>"></div>
+        <div class="fixedimg2" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>"></div>
         <?php $num++; } ?>
        
         </div>
@@ -73,8 +73,8 @@
             <?php  } ?>
             <div class="gallery-container" id="animated-thumbnails-gallery">
                 <?php foreach ($newArrayImg as $k=>$img) { ?>
-                    <a data-lg-size="1600-1144" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide 4" class="gallery-item" data-src="<?=$apiURL?>/img/<?=$img->imgName?>">
-                        <img class="img-responsive" src="<?=$apiURL?>/img/<?=$img->imgName?>" alt="<?=$seoData->imagetag?>" />
+                    <a data-lg-size="1600-1144" data-pinterest-text="Pin it3" data-tweet-text="lightGallery slide 4" class="gallery-item" data-src="<?=$imagesLink?>/img/<?=$img->imgName?>">
+                        <img class="img-responsive" src="<?=$imagesLink?><?=$img->imgName?>" alt="<?=$seoData->imagetag?>" />
                     </a>
                 <?php } ?>
                

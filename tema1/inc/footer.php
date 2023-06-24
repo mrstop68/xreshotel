@@ -55,7 +55,7 @@
 
             </div>
             <hr>
-            <div class="footerlogo"><img src="<?=$imagesLink?><?php if(isset($dataHOTEL->logo->logoname))echo $dataHOTEL->logo->logoname?>" alt="<?=$seoData->imagetag?>"></div>
+            <div class="footerlogo"><img src="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->logo->logoname))echo $dataHOTEL->logo->logoname?>" alt="<?=$seoData->imagetag?>"></div>
             <div class="fend">
                 <div class="endleft">
                 <?php

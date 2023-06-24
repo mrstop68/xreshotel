@@ -1,19 +1,15 @@
 <?php include 'code.php' ?>
-<?php
-$rr= count(($dataIMG));
-$randIMG=rand(0,$rr-1);
-?>
+
 <!DOCTYPE html>
 <html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-<meta charset="UTF-8">
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -30,7 +26,7 @@ $randIMG=rand(0,$rr-1);
             <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
             <?php
         }
-    ?> 
+    ?>
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap-icons/bootstrap-icons.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/style.css" />
@@ -39,7 +35,7 @@ $randIMG=rand(0,$rr-1);
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
     <?php include 'inc/header.php' ?>
 
-    <div class="img-top" style="background-image:url('<?=$apiURL?>/img/<?=(($dataIMG)[$randIMG]->imgName)?>'")></div>
+    <div class="img-top" style="background-image:url('<?=$imagesLink?><?=(($dataIMG)[$randIMG]->imgName)?>'")></div>
     <section>
         <div class="galericontainer">
             <div class="cheader">
@@ -79,9 +75,9 @@ $randIMG=rand(0,$rr-1);
                                     foreach($vals as $valonly){
                                     $valonly=(str_replace([' ','&','_','-','?','^','%'],'',$valonly));
                                         if($valonly==$HotelCategory){?>
-                                            <li class="gallery_product filter <?php echo $HotelCategory ?>" data-src="<?=$apiURL?>/img/<?=$valimg->imgName; ?>">
+                                            <li class="gallery_product filter <?php echo $HotelCategory ?>" data-src="<?=$imagesLink?><?=$valimg->imgName; ?>">
                                            <a href="">
-                                           <img class="img-responsive" src="<?=$apiURL?>/img/<?=$valimg->imgName; ?>" alt="<?=$seoData->imagetag?>"/>
+                                           <img class="img-responsive" src="<?=$imagesLink?><?=$valimg->imgName; ?>" alt="<?=$seoData->imagetag?>"/>
                                            <div class="demo-gallery-poster">
                                                <img src="<?=$dataHOTEL->website?>/tema1/images/zoom.png" />
                                            </div>

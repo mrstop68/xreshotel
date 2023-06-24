@@ -57,4 +57,25 @@ usort($activePage->content,function($first,$second){
                     break;
                 }
             }
+
+    // Bu class otele ait tüm dildeki sayfalar çekildikten sonra buraya gönderilen dile göre sayfaları filtreleyip geri gönderir
+    class FilterPagesToLangCode{
+        private $parameterValue;
+        
+        function __construct($parameterValue)
+        {
+            $this->val = $parameterValue;
+        }
+        function menupageSelect($obj){
+            return ($obj->lang==$this->val);
+        }
+        function issetTopMenu($obj){
+            return ($obj->subpage==$this->val);
+        }
+        function groupNumberinContent($data){
+            return ($data->sectionGroup==$this->val);
+        }
+    };
+
+        
 ?>

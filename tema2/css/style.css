@@ -41,6 +41,7 @@ h6 {
 .flags {
     width: 20px;
     height: 20px;
+    margin-right: 5px;
 }
 
 .flags-li {
@@ -49,7 +50,7 @@ h6 {
 }
 
 section {
-    padding: 80px 0;
+    padding: 80px 0 40px 0;
     overflow: hidden;
 }
 
@@ -433,7 +434,7 @@ section {
         font-family: var(--font-primary);
         font-size: 16px;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.9);
         white-space: nowrap;
         transition: 0.3s;
     }
@@ -494,7 +495,7 @@ section {
     .navbar .dropdown ul a:hover,
     .navbar .dropdown ul .active:hover,
     .navbar .dropdown ul li:hover>a {
-        color: var(--color-primary);
+        color: var(--color-secondary);
     }
     .navbar .dropdown:hover>ul {
         opacity: 1;
@@ -653,8 +654,11 @@ section {
 }
 
 .footer .footer-info .logo img {
-    max-height: 40px;
+    max-width: 190px;
     margin-right: 6px;
+    background-color: #fff;
+    padding: 4px;
+    border-radius: 2px;
 }
 
 .footer .footer-info .logo span {
@@ -750,4 +754,24 @@ section {
 
 .footer .credits a {
     color: #fff;
+}
+
+.justifyContent {
+    justify-content: center;
+}
+
+.white-text {
+    color: #fff;
+}
+
+.swiper-slide {
+    cursor: grab;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.upperText {
+    text-transform: uppercase;
 }

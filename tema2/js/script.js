@@ -1,122 +1,101 @@
 document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
+    "use strict";
 
-  /**
-   * Preloader
-   */
-  const preloader = document.querySelector("#preloader");
-  if (preloader) {
-    window.addEventListener("load", () => {
-      preloader.remove();
+    const preloader = document.querySelector("#preloader");
+    if (preloader) {
+        window.addEventListener("load", () => {
+            preloader.remove();
+        });
+    }
+
+    const selectHeader = document.querySelector("#header");
+    if (selectHeader) {
+        document.addEventListener("scroll", () => {
+            window.scrollY > 100 ?
+                selectHeader.classList.add("sticked") :
+                selectHeader.classList.remove("sticked");
+        });
+    }
+
+    const scrollTop = document.querySelector(".scroll-top");
+    if (scrollTop) {
+        const togglescrollTop = function() {
+            window.scrollY > 100 ?
+                scrollTop.classList.add("active") :
+                scrollTop.classList.remove("active");
+        };
+        window.addEventListener("load", togglescrollTop);
+        document.addEventListener("scroll", togglescrollTop);
+        scrollTop.addEventListener(
+            "click",
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            })
+        );
+    }
+
+    const mobileNavShow = document.querySelector(".mobile-nav-show");
+    const mobileNavHide = document.querySelector(".mobile-nav-hide");
+
+    document.querySelectorAll(".mobile-nav-toggle").forEach((el) => {
+        el.addEventListener("click", function(event) {
+            event.preventDefault();
+            mobileNavToogle();
+        });
     });
-  }
 
-  /**
-   * Sticky header on scroll
-   */
-  const selectHeader = document.querySelector("#header");
-  if (selectHeader) {
-    document.addEventListener("scroll", () => {
-      window.scrollY > 100
-        ? selectHeader.classList.add("sticked")
-        : selectHeader.classList.remove("sticked");
+    function mobileNavToogle() {
+        document.querySelector("body").classList.toggle("mobile-nav-active");
+        mobileNavShow.classList.toggle("d-none");
+        mobileNavHide.classList.toggle("d-none");
+    }
+
+    document.querySelectorAll("#navbar a").forEach((navbarlink) => {
+        if (!navbarlink.hash) return;
+
+        // let section = document.querySelector(navbarlink.hash);
+        // if (!section) return;
+
+        navbarlink.addEventListener("click", () => {
+            if (document.querySelector(".mobile-nav-active")) {
+                mobileNavToogle();
+            }
+        });
     });
-  }
 
-  /**
-   * Scroll top button
-   */
-  const scrollTop = document.querySelector(".scroll-top");
-  if (scrollTop) {
-    const togglescrollTop = function () {
-      window.scrollY > 100
-        ? scrollTop.classList.add("active")
-        : scrollTop.classList.remove("active");
-    };
-    window.addEventListener("load", togglescrollTop);
-    document.addEventListener("scroll", togglescrollTop);
-    scrollTop.addEventListener(
-      "click",
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
-    );
-  }
+    const navDropdowns = document.querySelectorAll(".navbar .dropdown > a");
 
-  /**
-   * Mobile nav toggle
-   */
-  const mobileNavShow = document.querySelector(".mobile-nav-show");
-  const mobileNavHide = document.querySelector(".mobile-nav-hide");
+    navDropdowns.forEach((el) => {
+        el.addEventListener("click", function(event) {
+            if (document.querySelector(".mobile-nav-active")) {
+                event.preventDefault();
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("dropdown-active");
 
-  document.querySelectorAll(".mobile-nav-toggle").forEach((el) => {
-    el.addEventListener("click", function (event) {
-      event.preventDefault();
-      mobileNavToogle();
+                let dropDownIndicator = this.querySelector(".dropdown-indicator");
+                dropDownIndicator.classList.toggle("bi-chevron-up");
+                dropDownIndicator.classList.toggle("bi-chevron-down");
+            }
+        });
     });
-  });
 
-  function mobileNavToogle() {
-    document.querySelector("body").classList.toggle("mobile-nav-active");
-    mobileNavShow.classList.toggle("d-none");
-    mobileNavHide.classList.toggle("d-none");
-  }
-
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll("#navbar a").forEach((navbarlink) => {
-    if (!navbarlink.hash) return;
-
-    let section = document.querySelector(navbarlink.hash);
-    if (!section) return;
-
-    navbarlink.addEventListener("click", () => {
-      if (document.querySelector(".mobile-nav-active")) {
-        mobileNavToogle();
-      }
+    new Swiper(".slides-1", {
+        speed: 600,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        slidesPerView: "auto",
+        pagination: {
+            el: ".swiper-pagination",
+            type: "bullets",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
     });
-  });
-
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  const navDropdowns = document.querySelectorAll(".navbar .dropdown > a");
-
-  navDropdowns.forEach((el) => {
-    el.addEventListener("click", function (event) {
-      if (document.querySelector(".mobile-nav-active")) {
-        event.preventDefault();
-        this.classList.toggle("active");
-        this.nextElementSibling.classList.toggle("dropdown-active");
-
-        let dropDownIndicator = this.querySelector(".dropdown-indicator");
-        dropDownIndicator.classList.toggle("bi-chevron-up");
-        dropDownIndicator.classList.toggle("bi-chevron-down");
-      }
-    });
-  });
-
-  /**
-   * Init swiper slider with 1 slide at once in desktop view
-   */
-  new Swiper(".slides-1", {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    slidesPerView: "auto",
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
 });

@@ -110,7 +110,7 @@ li a:hover {
     margin-top: 70px;
     margin-left: 10px;
     background: #fff;
-    border-radius: 20px;
+    border-radius: 4px;
     padding: 12px;
 }
 
@@ -131,7 +131,11 @@ li a:hover {
     padding: 10px 15px;
     margin: 0;
     display: flex;
-    align-items: center;
+    align-items: revert;
+}
+
+.nav-tab img {
+    margin-left: 4px;
 }
 
 .hidden {
@@ -240,7 +244,7 @@ li a:hover {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 94px;
+    width: max-content;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
@@ -1052,4 +1056,30 @@ hr {
     color: #fff;
     margin-bottom: 28px;
     font-family: "Playfair Display", serif;
+}
+
+.endleft {
+    margin: 12px 5px;
+}
+
+.endleft span a {
+    text-decoration: none;
+    margin-right: 4px;
+    color: #000;
+}
+
+.endleft span {
+    display: inline-block;
+    color: #000;
+    cursor: pointer;
+}
+
+.footerlogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background: #fff;
 }

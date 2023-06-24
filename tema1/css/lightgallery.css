@@ -1,6 +1,14 @@
 @font-face {
     font-family: "lg";
-    src: url("../fonts/lg.ttf?io9a6k") format("truetype"), url("../fonts/lg.woff?io9a6k") format("woff"), url("../fonts/lg.svg?io9a6k#lg") format("svg");
+    src: url("fonts/lg.ttf?io9a6k") format("truetype"), url("fonts/lg.woff?io9a6k") format("woff"), url("fonts/lg.svg?io9a6k#lg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+@font-face {
+    font-family: "lg";
+    src: url("./fonts/lg.ttf?io9a6k") format("truetype"), url("./fonts/lg.woff?io9a6k") format("woff"), url("./fonts/lg.svg?io9a6k#lg") format("svg");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -722,14 +730,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 
 
 /* ***************************************** Demo galeri***************************************** */
-
-@font-face {
-    font-family: "lg";
-    src: url("fonts/lg.ttf?io9a6k") format("truetype"), url("fonts/lg.woff?io9a6k") format("woff"), url("fonts/lg.svg?io9a6k#lg") format("svg");
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
 
 .small {
     font-size: 11px;

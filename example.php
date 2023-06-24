@@ -3,8 +3,25 @@ session_start();
 include_once ('api.php');
 // print_r(($dataIMG));
 // print_r(($dataHOTEL));
-// print_r(($dataPAGES));
+// var_dump(($dataPAGES));
 
+//start aşağıda $dataPAGES dizisindeki otelin tüm dillerdeki sayfasını dil koduna göre filtreleme işlemi yapıldı
+$lCode='EN';
+class FilterPagesToLangCode{
+    private $Langcode;
+ 
+	function __construct($Langcode)
+	{
+		$this->lcod = $Langcode;
+	}
+    function menupageSelect($obj){
+        return $obj->lang==$this->lcod ;
+ }
+};
+
+ $ttt=array_filter($dataPAGES, array(new FilterPagesToLangCode($lCode), 'menupageSelect'));
+ var_dump($ttt);
+//finish
 
 print_r($dataHOTEL->logo->logoname);
 // print_r(explode('_',$str)[1]);

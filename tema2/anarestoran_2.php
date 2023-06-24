@@ -3,12 +3,12 @@
 <html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -25,17 +25,17 @@
             <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
             <?php
         }
-    ?> 
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap-icons/bootstrap-icons.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/style.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/sub.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/swiper-bundle.css" />
+    ?>
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/style.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/sub.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/swiper-bundle.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
 <style>
-    .swiper {
+   .swiper {
         width: 100%;
-        height: 600px;
+        height: 100%;
       }
 
       .swiper-slide {
@@ -56,6 +56,7 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+        cursor:grab;
       }
 
       .swiper-slide img {
@@ -63,90 +64,82 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        
       }
 
       .swiper-slide {
-        width: 95%;
+        width: 80%;
       }
 
       .swiper-slide:nth-child(2n) {
-        width: 95%;
+        width: 60%;
       }
 
       .swiper-slide:nth-child(3n) {
-        width: 95%;
+        width: 60%;
       }
-
-</style>
+    </style>
     <?php include 'inc/header.php' ?> 
     
-        <div class="img-top" style="background-image:url('images/home/5.webp') ;"></div>
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>') ;"></div>
 
-        
-    <section class="text-bg-light bg">
+              <!-- Tab Section -->
+    <section id="features" class="features section-bg-light text-bg-light bg">
       <div class="container">
+        <ul class="nav nav-tabs">
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));
+        $tabNumber=1;
+        $num=0;
+         foreach($filtergroupcontent as $content){ ?>
+          <li class="nav-item col-3">
+            <a class="nav-link <?php if($tabNumber==1)echo 'active show'?>" data-bs-toggle="tab" data-bs-target="#tab-<?=$tabNumber?>">
+              <h4><?=$content->content?></h4>
+            </a>
+          </li>
+          <!-- End tab nav item -->
+          <?php $tabNumber++; } ?>
+        </ul>
 
-        <div class="row position-relative">
-        <div class="col-lg-12">
-        <div class="swiper mySwiper">
+        <div class="tab-content">
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));
+        $tabNumber=1;
+         foreach($filtergroupcontent as $content){ ?>
+          <div class="tab-pane <?php if($tabNumber==1)echo 'active show'?>" id="tab-<?=$tabNumber?>">
+            <div class="row">
+              <div class="col-lg-12 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center text-center" >
+                <?=$content->content?>
+              </div>
+              <div class="col-lg-12 order-1 order-lg-2 text-center" >
+                <div class="swiper mySwiper">
                   <div class="swiper-wrapper">
-            
-        <?php for ($i = 4; $i <= 9; $i++) { ?>
-            <div class="swiper-slide">
-                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
-            </div>
-
-        <?php } ?>
+                  <?php 
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$num;}
+                      else {$picnumber=1+$num; }
+                  while ( $num < $picnumber ) { ?>
+                    <div class="swiper-slide">
+                      <img src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>"/>
+                    </div>
+                    <?php $num++; } ?>
                   </div>
                   <div class="swiper-pagination"></div>
                 </div>
               </div>
             </div>
-    </div>
-    </div>
-          <div class="col-lg-12 pt-4 text-center" id="activities">
-            <h2>Sahil & Havuz</h2>
-            <br>
-              <h3>Slogan</h3>
-              <br>
-              <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
+          </div><!-- End tab content item -->
+          <?php $tabNumber++; } ?>
 
-             <br>
-
-             <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
-
-            <br>
-             
-              <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
-            </div>
         </div>
-
       </div>
     </section>
+   
     
-
-    <!-- mid-content -->
-    <section id="middle-cover" style="background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(images/home/9.webp) no-repeat fixed center center / cover rgba(0, 0, 0, 5);">
-    <div class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h2 data-sr="enter top over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-family: 'Poppins', sans-serif; font-size: 50px; color:#fff">Slogan</h2>
-                <h5 data-sr="enter bottom over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-size: 20px; color:#fff">Hoşgeldiniz!</h5>
-
-                <div class="form-group col-sm-12 ">
-                    <button class="btn btn-light">Fiyat Sorgula</button>
-                </div>
-            </div>
-        </div>
-    </div>	
-</section>
-<!-- mid-content -->
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     
-    <script src="<?=$dataHOTEL->website?>/js/bootstrap.bundle.min.js"></script>
-    <script src="<?=$dataHOTEL->website?>/js/script.js"></script>
-    <script src="<?=$dataHOTEL->website?>/js/swiper-bundle.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/script.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/swiper-bundle.js"></script>
     <?php include 'widget.php' ?>
     <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
     <?php include 'geoip.php' ?>

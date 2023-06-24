@@ -3,12 +3,12 @@
 <html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -26,11 +26,11 @@
             <?php
         }
     ?> 
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/bootstrap-icons/bootstrap-icons.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/style.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/sub.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/css/swiper-bundle.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/style.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/sub.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/swiper-bundle.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
 <style>
     .swiper {
@@ -56,6 +56,7 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+        cursor:grab;
       }
 
       .swiper-slide img {
@@ -69,145 +70,76 @@
         margin-left: auto;
         margin-right: auto;
       }
+      @media screen and (min-width: 992px) {
+        .rcontainer:nth-child(odd) .rbody:nth-child(1){
+          order:1
+        }
+      }
 </style>
     <?php include 'inc/header.php' ?> 
     
-        <div class="img-top" style="background-image:url('images/home/15.webp') ;"></div>
-
+    <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>') ;"></div>
         
-     
-     <section class="section-bg text-bg-light bg">
-      <div class="container">
-
-        <div class="row justify-content-around gy-4">
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h3>Standart Room</h3>
-            
-            <br><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-            <div class="d-flex position-relative">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            
-
-              </div>
-            </div>
-
-          <div class="col-lg-6">
-          <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-        <?php for ($i = 16; $i <= 19; $i++) { ?>
-            <div class="swiper-slide">
-                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
-            </div>
-
+    <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));?>
+    <section>
+        <?php foreach($filtergroupcontent as $content){ ?>
+          <div class="container col-lg-12  text-center">
+            <?=$content->content?>
+          </div>
         <?php } ?>
-        </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+    </section>
+     
+    <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));?>
+    <?php 
+        $num=0;
+        foreach($filtergroupcontent as $content){ ?>
+    <section class="rcontainer section-bg text-bg-light bg">
+      <div class="container">
+        <div class="row justify-content-around gy-4">
+
+          <div class="col-lg-6 d-flex flex-column rbody">
+          <?=$content->content?>
+          </div>
+
+          <div class="col-lg-6 rbody">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+              <?php 
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$num;}
+                      else {$picnumber=1+$num; }
+                  while ( $num < $picnumber ) { ?>
+                  <div class="swiper-slide">
+                      <img alt="<?=$seoData->imagetag?>" src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" />
+                  </div>
+                  <?php $num++; } ?>
+              </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
+    <?php } ?>
 
-
-    <section class="text-bg-light bg">
-      <div class="container">
-
-        <div class="row justify-content-around gy-4">
-
-          <div class="col-lg-6">
-          <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-        <?php for ($i = 16; $i <= 19; $i++) { ?>
-            <div class="swiper-slide">
-                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
-            </div>
-
+    <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('3'), 'groupNumberinContent'));?>
+    <section>
+        <?php foreach($filtergroupcontent as $content){ ?>
+          <div class="container col-lg-12">
+            <?=$content->content?>
+          </div>
         <?php } ?>
-        </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-            </div>
-          </div>
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h3>Family Room</h3>
-            <br><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-            <div class="d-flex position-relative">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-     
-              </div>
-            </div>
-          </div>
-        </div>
-
     </section>
 
-     
-    <section class="section-bg text-bg-light bg">
-      <div class="container">
-
-        <div class="row justify-content-around gy-4">
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h3>Suite Room</h3>
-            <br><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-            <div class="d-flex position-relative">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-     
-              </div>
-            </div>
-
-          <div class="col-lg-6">
-          <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-        <?php for ($i = 16; $i <= 19; $i++) { ?>
-            <div class="swiper-slide">
-                <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
-            </div>
-
-        <?php } ?>
-        </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- mid-content -->
-    <section id="middle-cover" style="background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(images/home/14.webp) no-repeat fixed center center / cover rgba(0, 0, 0, 5);">
-    <div class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h2 data-sr="enter top over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-family: 'Poppins', sans-serif; font-size: 50px; color:#fff">Slogan</h2>
-                <h5 data-sr="enter bottom over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-size: 20px; color:#fff">Hoşgeldiniz!</h5>
-
-                <div class="form-group col-sm-12 ">
-                    <button class="btn btn-light">Fiyat Sorgula</button>
-                </div>
-            </div>
-        </div>
-    </div>	
-</section>
-<!-- mid-content -->
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     
-    <script src="<?=$dataHOTEL->website?>/js/bootstrap.bundle.min.js"></script>
-    <script src="<?=$dataHOTEL->website?>/js/script.js"></script>
-    <script src="<?=$dataHOTEL->website?>/js/swiper-bundle.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/bootstrap.bundle.min.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/script.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema2/js/swiper-bundle.js"></script>
     <?php include 'widget.php' ?>
     <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
     <?php include 'geoip.php' ?>

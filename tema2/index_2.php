@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if(isset($seoData->title))echo $seoData->title?></title>
-    <link rel="apple-touch-icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
-    <link rel="icon" href="<?=$apiURL?>/logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
     <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
     <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
@@ -62,7 +62,7 @@
             $n=0;
             foreach($dataIMG as $k=>$img){
               if($img->slider==true) {?><div class="carousel-item <?php if($n==0) echo 'active'; $n++ ?>">
-              <img src="<?=$apiURL?>/img/<?=$img->imgName?>" class="d-block" alt="<?=$seoData->imagetag?>" /></div><?php }
+              <img src="<?=$imagesLink?><?=$img->imgName?>" class="d-block" alt="<?=$seoData->imagetag?>" /></div><?php }
             }
             ?>
       </div>
@@ -94,21 +94,17 @@
       >
         <div class="row position-relative">
           <div class="col-12">
-            <img src="tema2/images/logo1.png" alt="<?=$seoData->imagetag?>" />
+            <img src="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"/>
           </div>
           <div
             class="col-sm-7 justify-content-center mx-auto flex-column d-flex pt-2"
             style="z-index: 1"
-          >
-            <h1 class="display-7 text-center pb-3">SLOGAN</h1>
-            <p class="mx-auto"></p>
+          ><br>
+          <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));?>
+          <?php  foreach($filtergroupcontent as $content){?>
             <p>
-              Cras fermentum odio eu feugiat lide par naso tierra. Justo eget
-              nada terra videa magna derita valies darta donna mare fermentum
-              iaculis eu non diam phasellus.Cras fermentum odio eu feugiat lide
-              par naso tierra. Justo eget nada terra videa magna derita valies
-              darta donna mare fermentum iaculis eu non diam phasellus.<br /><br /><br />
-            </p>
+              <?=$content->content?>
+            </p> <?php    } ?>
             <p></p>
           </div>
         </div>
@@ -116,78 +112,58 @@
     </section>
 
     <!-- Swiper Section -->
-    <section id="main-swiper" class="text-bg-light bg" style= "background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(tema2/images/home/13.webp); background-size: cover;">
-        <div
-          class="container"
-        >
+    <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));?>
+    <?php 
+            $num=0;
+            foreach($filtergroupcontent as $content){ ?>
+      <section id="main-swiper" class="text-bg-light bg" style= "background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>); background-size: cover;background-position: center;">
+        <div class="container">
           <div class="row text-white py-5">
             <div class="col-md-6" style="overflow: hidden; position: relative">
               <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
+                <?php 
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$num;}
+                      else {$picnumber=1+$num; }
+                  while ( $num < $picnumber ) { ?>
                   <div class="swiper-slide">
-                    <img src="tema2/images/home/1.webp" alt="<?=$seoData->imagetag?>"/>
+                    <img src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>"/>
                   </div>
-                  <div class="swiper-slide">
-                    <img src="tema2/images/home/2.webp" alt="<?=$seoData->imagetag?>"/>
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="tema2/images/home/3.webp" alt="<?=$seoData->imagetag?>"/>
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="tema2/images/home/4.webp" alt="<?=$seoData->imagetag?>"/>
-                  </div>
+                  <?php $num++; } ?>
                 </div>
                 <div class="swiper-pagination"></div>
               </div>
             </div>
             <div class="col-md-6 p-sm-5 m-auto text-center">
-              <h2>Slogan</h2>
               <p>
-                Cras fermentum odio eu feugiat lide par naso tierra. Justo eget
-                nada terra videa magna derita valies darta donna mare fermentum
-                iaculis eu non diam phasellus.
+              <?=$content->content?>
               </p>
-
-              <i class="fa-solid fa-chevron-right"></i
-              ><a class="btn btn-light" href="#">Daha Fazla</a>
             </div>
           </div>
         </div>
       </div>
     </section>
+      </p> <?php    } ?>
     
     <!-- Room Section -->
     <section class="text-bg-light bg">
     <div class="container ">
-    <h3 class="display-7 text-center pb-3">KONAKLAMA</h3>
-        <div class="row">
+    <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('3'), 'groupNumberinContent'));
+      foreach($filtergroupcontent as $content){?>
+      <p><?=$content->content?></p> 
+    <?php } ?>
+        <div class="row justifyContent">
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('4'), 'groupNumberinContent'));
+         foreach($filtergroupcontent as $content){?>
           <div class="col-sm-4 mt-2">
-            <div class="card card text-center" style="background-image: url(tema2/images/home/16.webp); background-size: cover;">
+            <div class="card card text-center" style="background-image: url(<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>); background-size: cover;background-position: center;">
               <div class="title">
-                <h2>Standart Room</h2>
-                <a href="konaklama">Detail</a>
+              <?=$content->content?>
               </div>
-              
             </div>
           </div>
-          <div class="col-sm-4 mt-2">
-            <div class="card card text-center" style="background-image: url(tema2/images/home/18.webp); background-size: cover;">
-              <div class="title">
-                <h2>Family Room</h2>
-                <a href="konaklama">Detail</a>
-              </div>
-            
-            </div>
-          </div>
-          <div class="col-sm-4 mt-2">
-            <div class="card card text-center" style="background-image: url(tema2/images/home/17.webp); background-size: cover;">
-              <div class="title">
-                <h2>Suite Room</h2>
-                <a href="konaklama">Detail</a>
-              </div>
-              
-            </div>
-          </div>
+          <?php $num++; } ?>
         </div>
       </div>
  
@@ -199,194 +175,51 @@
       <div class="container">
 
         <ul class="nav nav-tabs">
-
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('5'), 'groupNumberinContent'));
+        $tabNumber=1;
+         foreach($filtergroupcontent as $content){ ?>
           <li class="nav-item col-3">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-              <h4>Sahil & Havuz</h4>
+            <a class="nav-link <?php if($tabNumber==1)echo 'active show'?>" data-bs-toggle="tab" data-bs-target="#tab-<?=$tabNumber?>">
+              <h4><?=$content->content?></h4>
             </a>
           </li>
           <!-- End tab nav item -->
-
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-              <h4>Restaurant</h4>
-            </a>
-            <!-- End tab nav item -->
-
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-              <h4>Bar</h4>
-            </a>
-          </li>
-          <!-- End tab nav item -->
-
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-              <h4>Eğlence</h4>
-            </a>
-          </li>
-          <!-- End tab nav item -->
-
+          <?php $tabNumber++; } ?>
         </ul>
-
         <div class="tab-content">
-
-          <div class="tab-pane active show" id="tab-1">
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('6'), 'groupNumberinContent'));
+        $tabNumber=1;
+         foreach($filtergroupcontent as $content){ ?>
+          <div class="tab-pane <?php if($tabNumber==1)echo 'active show'?>" id="tab-<?=$tabNumber?>">
             <div class="row">
               <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center" >
-                <h3>Lorem Ipsum</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li>Lorem ipsum sit amet,</li>
-                  <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li>Lorem ipsum sit amet, Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
+                <?=$content->content?>
               </div>
               <div class="col-lg-6 order-1 order-lg-2 text-center" >
                 <div class="swiper mySwiper">
                   <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/2.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/3.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/4.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/9.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
+                  <?php 
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$num;}
+                      else {$picnumber=1+$num; }
+                  while ( $num < $picnumber ) { ?>
+                  <div class="swiper-slide">
+                    <img src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>"/>
+                  </div>
+                  <?php $num++; } ?>
                   </div>
                   <div class="swiper-pagination"></div>
                 </div>
               </div>
             </div>
           </div><!-- End tab content item -->
-
-          <div class="tab-pane" id="tab-2">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Lorem Ipsum</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li>Lorem ipsum sit amet,</li>
-                  <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
-                  <li>Lorem ipsum sit amet, Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <div class="swiper mySwiper">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/11.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/12.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-
-                  </div>
-                  <div class="swiper-pagination"></div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End tab content item -->
-
-          <div class="tab-pane" id="tab-3">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Lorem Ipsum</h3>
-                <ul>
-                  <li>Lorem ipsum sit amet,</li>
-                  <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
-                </ul>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <div class="swiper mySwiper">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/13.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/14.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                  </div>
-                  <div class="swiper-pagination"></div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End tab content item -->
-
-          <div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                <h3>Lorem Ipsum</h3>
-                <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
-                </p>
-                <ul>
-                  <li>Lorem ipsum sit amet,</li>
-                  <li>Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li>Lorem ipsum sit amet, Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <div class="swiper mySwiper">
-                  <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/7.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/8.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/9.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                    <div class="swiper-slide">
-                      <img src="tema2/images/home/10.webp" alt="<?=$seoData->imagetag?>"/>
-                    </div>
-                  </div>
-                  <div class="swiper-pagination"></div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End tab content item -->
-
+          <?php $tabNumber++; } ?>
+        
         </div>
-
       </div>
     </section>
     <!-- End Tab Section -->
 
-
-    <!-- mid-content -->
-    <section id="middle-cover" style="background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(tema2/images/home/7.webp) no-repeat fixed center center / cover rgba(0, 0, 0, 5);">
-    <div class="container">
-        <div class="row text-center justify-content-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h2 data-sr="enter top over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-family: 'Poppins', sans-serif; font-size: 50px; color:#fff">Slogan</h2>
-                <h5 data-sr="enter bottom over 1s, wait 0.3s, move 24px, reset" class="white-text" style="font-size: 20px; color:#fff">Hoşgeldiniz!</h5>
-
-                <div class="form-group col-sm-12 ">
-                    <button class="btn btn-light">Fiyat Sorgula</button>
-                </div>
-            </div>
-        </div>
-    </div>	
-</section>
 <!-- mid-content -->
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>

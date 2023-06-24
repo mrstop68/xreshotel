@@ -1,1 +1,0 @@
-document.querySelector("body").style.marginRight="0"

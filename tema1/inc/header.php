@@ -15,9 +15,10 @@
     <header>
         <div class="nav-wrapper">
             <div class="logo-container">
-                <a href="<?php if(empty($langURL)){echo $dataHOTEL->website;}else{ echo $dataHOTEL->website.'/'.$langURL.'/';} ?>"><img class="logo" src="<?=$imagesLink?><?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"></a>
+                <a href="<?php if(empty($langURL)){echo $dataHOTEL->website;}else{ echo $dataHOTEL->website.'/'.$langURL.'/';} ?>"><img class="logo" src="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"></a>
             </div>
             <!-- <?php echo $langURL ?> -->
+            
             <nav>
                 <input class="hidden" type="checkbox" id="menuToggle">
                 <label class="menu-btn" for="menuToggle">
@@ -29,36 +30,60 @@
                     <ul class="nav-tabs">
                     <?php //menu start
                     if((empty($langURL))){
-                        foreach($dataPAGES as $pages){
-                            if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && $pages->status!='false'){ ?>
+                        $lCode=$dataHOTEL->LangCode;
+                        $filterPageToLang=array_filter($dataPAGES, array(new FilterPagesToLangCode($lCode), 'menupageSelect'));
+                        foreach($filterPageToLang as $pages){
+                            $findTopMenu=array_filter($filterPageToLang, array(new FilterPagesToLangCode($pages->link), 'issetTopMenu'));
+                            if((empty($findTopMenu)) && $pages->status!='false' && ($pages->subpage=='homemenu' || (!isset($pages->subpage)))){ ?>
                                 <li class="nav-tab"><a href="<?php if($pages->link=='/'){echo $dataHOTEL->website;}else{echo $pages->link;} ?>" <?php if((isset($pages->link)) && ($pages->link=='reservation'))echo 'id="tbres"' ?>><?=$pages->pagename?></a></li>
-                        <?php  } } 
+                        <?php  }else if($pages->status!='false' && ($pages->subpage=='homemenu' || (!isset($pages->subpage)))){?>
+                                <div class="dropdown">
+                                        <li class="nav-tab"><?=$pages->pagename?><img src="<?=$dataHOTEL->website?>/tema1/images/down-arrow.svg" alt="<?=$seoData->imagetag?>"></li>
+                                    <div class="dropdown-content">
+                                        <?php foreach ($findTopMenu as $pages){ ?>
+                                        <li class="nav-tab"><a href="<?=$pages->link?>"><?=$pages->pagename?></a></li>
+                                        <?php } ?>
+                                    </div>
+                                </div> 
+                        <?php } } 
                     }else{ 
-                        foreach($dataPAGES as $pages){
-                            if(($langURL==strtolower($pages->lang)) && $pages->status!='false'){ ?>
+                        $lCode=strtoupper($langURL);
+                        $filterPageToLang=array_filter($dataPAGES, array(new FilterPagesToLangCode($lCode), 'menupageSelect'));
+                        foreach($filterPageToLang as $pages){
+                            $findTopMenu=array_filter($filterPageToLang, array(new FilterPagesToLangCode($pages->link), 'issetTopMenu'));
+                            if((empty($findTopMenu)) && $pages->status!='false' && ($pages->subpage=='homemenu' || (!isset($pages->subpage)))){ ?>
                                 <li class="nav-tab"><a href="<?php if($pages->link=='/'){echo $dataHOTEL->website.'/'.$langURL.'/';}else{echo $pages->link;} ?>" <?php if((isset($pages->link)) && ($pages->link=='reservation'))echo 'id="tbres"' ?>><?=$pages->pagename?></a></li>
-                        <?php  } } 
+                                <?php  }else if($pages->status!='false' && ($pages->subpage=='homemenu' || (!isset($pages->subpage)))){?>
+                                <div class="dropdown">
+                                        <li class="nav-tab"><?=$pages->pagename?><img src="<?=$dataHOTEL->website?>/tema1/images/down-arrow.svg" alt="<?=$seoData->imagetag?>"></li>
+                                    <div class="dropdown-content">
+                                        <?php foreach ($findTopMenu as $pages){ ?>
+                                        <li class="nav-tab"><a href="<?=$pages->link?>"><?=$pages->pagename?></a></li>
+                                        <?php } ?>
+                                    </div>
+                                </div> 
+                        <?php } } 
                     }//menu finish
                   ?>
                         <?php if(isset($dataLANG[1]->LangCode)){ //dil menu start?> 
                             <div class="dropdown">
                                 <?php if(empty($langURL)){ // ana header üzerinde görünecek dil?>
-                                    <li class="nav-tab"><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></li>
+                                    <li class="nav-tab"><img src="<?=$imagesLink?><?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></li>
                                 <?php }else { ?>
-                                    <li class="nav-tab"><img src="<?=$panelURL?>/img/flag/<?=strtoupper($langURL)?>.svg" alt="<?=$seoData->imagetag?>" width="26"> <?=strtoupper($langURL)?></li>
+                                    <li class="nav-tab"><img src="<?=$imagesLink?>img/flag/<?=strtoupper($langURL)?>.svg" alt="<?=$seoData->imagetag?>" width="26"> <?=strtoupper($langURL)?></li>
                                 <?php }  ?>
                                 <div class="dropdown-content">
                             <?php  
                                 if(empty($langURL)){// header üzerindeki dili tıklayınca listelenen diller
                                     foreach($dataLANG as $langs){ ?>
                                     <?php if(($langs->LangCode)!='mainlang'){ ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$imagesLink?><?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
                                     <?php } } ?>
                                 <?php }else{  ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/" ><img src="<?=$panelURL?>/<?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/" ><img src="<?=$imagesLink?><?=$dataHOTEL->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$dataHOTEL->LangCode?></a></li>
                                     <?php foreach($dataLANG as $langs){ ?>
                                     <?php if((strtolower($langs->LangCode))!=$langURL && ($langs->LangCode)!='mainlang'){ ?>
-                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$panelURL?>/<?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
+                                    <li class="nav-tab"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img src="<?=$imagesLink?><?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
                                     <?php } } } ?>
                             </div>
                         </div>

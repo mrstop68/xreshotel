@@ -31,11 +31,14 @@
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/style.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema2/css/sub.css" />
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
-
+    <style>
+      .contact .info-item {
+          min-height: 100%;
+      }
+    </style>
     <?php include 'inc/header.php' ?> 
     
-        <div class="img-top" style="background-image:url('images/home/9.webp') ;"></div>
-
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>') ;"></div>
         
       <section id="contact" class="contact pt-2">
       <div class="container">
@@ -43,32 +46,48 @@
         <div class="row gy-4">
           <div class="col-lg-6">
             <div class="info-item  d-flex flex-column justify-content-center align-items-center">
-          
-              <h3 class="bi bi-map"> Adres</h3>
-              <h6>Antalya / Türkiye</h6>
+            <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));
+            $filtergroupcontent = array_values($filtergroupcontent);//array_values dizi elamanlarını sıfır index numarasından başlatarak tekrar yineler
+            ?>
+              <h3 class="bi bi-map"> <?=$filtergroupcontent[0]->content?></h3>
+              <h6><?=$seoData->adress?></h6>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center">
-                
-                <h3 class="bi bi-envelope"> Email</h3>
-              <h6><a href="mailto:">info@info.com</h6></a>
+            <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));
+            $filtergroupcontent = array_values($filtergroupcontent);
+            ?>
+                <h3 class="bi bi-envelope"> <?=$filtergroupcontent[0]->content?></h3>
+              <h6><a href="mailto:<?=$dataHOTEL->seoinfo->email?>"><?=$dataHOTEL->seoinfo->email?></h6></a>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item  d-flex flex-column justify-content-center align-items-center">
-            
-              <h3 class="bi bi-telephone"> Telefon</h3>
-              <h6><a href="tel:">+90 000 000 00 00</h6></a>
+            <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('3'), 'groupNumberinContent'));
+            $filtergroupcontent = array_values($filtergroupcontent);
+            ?>
+              <h3 class="bi bi-telephone"> <?=$filtergroupcontent[0]->content?></h3>
+              <h6><a href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><?=$dataHOTEL->seoinfo->phone1?></h6></a>
+
+              <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('4'), 'groupNumberinContent'));
+            $filtergroupcontent = array_values($filtergroupcontent);
+            ?>
+              <p> <?=$filtergroupcontent[0]->content?></p>
+              <h6><a href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><?=$dataHOTEL->seoinfo->phone2?></h6></a>
+
+              <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('5'), 'groupNumberinContent'));?>
+              <?php foreach($filtergroupcontent as $content){ ?>
+              <p><?=$content->content?></p>
+              <?php  } ?>
             </div>
           </div><!-- End Info Item -->
 
         </div>
 
         <div class="row gy-4 mt-1">
-
           <div class="col-lg-12 ">
             <iframe src="<?php if(isset($dataHOTEL->seoinfo->maps)){echo $dataHOTEL->seoinfo->maps;}?>" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->

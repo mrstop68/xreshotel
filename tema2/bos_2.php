@@ -77,16 +77,18 @@
 </style>
     <?php include 'inc/header.php' ?> 
     
-        <div class="img-top" style="background-image:url('images/home/15.webp') ;"></div>
-
-        
-    <section class="text-bg-light bg">
-      <div class="container">
-        <h2>Boş Sayfa</h2>
-        
-        </div>
-    </section>
-
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>') ;"></div>
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));?>
+        <section class="text-bg-light bg">
+            <div class="container text-center">
+              <h2><?=$activePage->pagename?></h2>
+            </div>
+             <div class="container">
+             <?php foreach($filtergroupcontent as $content){ ?>
+                <p><?=$content->content?></p>
+              <?php } ?>
+             </div>
+        </section>
    
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>

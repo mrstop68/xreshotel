@@ -72,53 +72,74 @@
         height: 100%;
         object-fit: cover;
       }
-
+      @media screen and (min-width: 992px) {
+        .rcontainer:nth-child(even) .rbody:nth-child(1){
+          order:1
+        }
+      }
+      @media screen and (max-width: 991px) {
+        .rcontainer .rbody:nth-child(1){
+          order:1
+        }
+      }
 
 </style>
     <?php include 'inc/header.php' ?> 
     
-        <div class="img-top" style="background-image:url('images/home/15.webp') ;"></div>
+        <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>') ;"></div>
 
         
-    <section class="text-bg-light bg">
-      <div class="container">
+        <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));?>
+        <?php 
+        $num=0;
+        $subnum=0;
+        $bigSliderNunber=11;
+        $thumbSliderNunber=10;
+        foreach($filtergroupcontent as $content){ ?>
+    <section class="rcontainer">
+      <div class="container" data-aos="fade-up">
         <div class="row position-relative">
-          <div class="col-lg-6 text-center" id="activities">
-                <h2>Genel Sayfa</h2>
-                <br>
-                <h3>Slogan</h3>
-                <br>
-                <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
-                <br>
-                <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
-                <br>
-                <p>Vitae autem velit excepturi fugit. Animi ad non. Eligendi et non nesciunt suscipit repellendus porro in quo eveniet. Molestias in maxime doloremque.</p>
-          </div>
-          <div class="col-lg-6">
-              <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
-                    <div class="swiper-wrapper">
-                      <?php for ($i = 6; $i <= 12; $i++) { ?>
+
+          <div class="col-lg-6 rbody">
+                    <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2 mySwiper<?=$bigSliderNunber?>">
+                  <div class="swiper-wrapper">
+                  <?php 
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$num;}
+                      else {$picnumber=1+$num; }
+                  while ( $num < $picnumber ) { ?>
                         <div class="swiper-slide">
-                          <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
+                            <img alt="<?=$seoData->imagetag?>" src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" />
                         </div>
-                      <?php } ?>
-                    </div>
+                    <?php $num++; } ?>
+                  </div>
                   <div class="swiper-button-next"></div>
                   <div class="swiper-button-prev"></div>
-              </div>
-              <div thumbsSlider="" class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                  <?php for ($i = 6; $i <= 9; $i++) { ?>
-                      <div class="swiper-slide cursorPointer">
-                          <img alt="<?=$seoData->imagetag?>" src="images/home/<?php echo $i ?>.webp" />
-                      </div>
-                  <?php } ?>
                 </div>
-              </div>
+                <div thumbsSlider="" class="swiper mySwiper mySwiper<?=$thumbSliderNunber?>">
+                  <div class="swiper-wrapper">
+
+                  <?php 
+                  
+                  if (isset($content->showpicturenumber))
+                      {$picnumber=$content->showpicturenumber+$subnum;}
+                      else {$picnumber=1+$subnum; }
+                  while ( $subnum < $picnumber ) { ?>
+                        <div class="swiper-slide">
+                            <img class="cursorPointer" alt="<?=$seoData->imagetag?>" src="<?=$imagesLink?><?php if(isset($newArrayImg[$subnum]->imgName)) echo $newArrayImg[$subnum]->imgName?>" />
+                        </div>
+                        <?php $subnum++; } ?>
+                  </div>
+                </div>
+          </div>
+          <div class="col-lg-6 text-center rbody" id="activities">
+            <?=$content->content?><br>
           </div>
         </div>
       </div>
     </section>
+    <?php $swiperNum++; $bigSliderNunber+=2; $thumbSliderNunber+=2; } ?>
+    <input type="text" name="swipernumber" value="<?=$swiperNum?>" id="swipernumber" hidden>
 
     
     <?php include 'global_html.php' ?>
@@ -131,14 +152,29 @@
     <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
     <?php include 'geoip.php' ?>
     <script>
-      var swiper = new Swiper(".mySwiper", {
+      document.onreadystatechange = () => {
+        let j=11;
+      if (document.readyState === 'complete') {
+        var swipernumber=parseInt(document.querySelector('#swipernumber').value)*2+10
+        // console.log((swipernumber))
+        // console.log(typeof swipernumber)
+        
+        for(let i = 10; i <= swipernumber; i+=2){
+        var swiper = new Swiper(".mySwiper"+i, {
         spaceBetween: 10,
         slidesPerView: 4,
         freeMode: true,
         watchSlidesProgress: true,
+        
       });
-      var swiper2 = new Swiper(".mySwiper2", {
-        spaceBetween: 10,
+      
+      var swiper2 = new Swiper(".mySwiper"+j, {
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -147,6 +183,10 @@
           swiper: swiper,
         },
       });
+      j+=2;
+      }
+      }
+      };
     </script>
     </body>
 

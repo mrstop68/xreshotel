@@ -47,6 +47,7 @@
           </div>
 
           <div class="col-lg-4 col-md-12 footer-contact text-start">
+            
                 <?php 
                   $group2=array_filter($footerContent,function($data){
                       return $data->sectionGroup==2;
@@ -58,12 +59,41 @@
               <p class="bi bi-telephone"> <?=$dataHOTEL->seoinfo->phone1?></p>
               <p class="bi bi-envelope"> <?=$dataHOTEL->seoinfo->email?></p>
           </div>
-          <div class="col-lg-4 col-md-12 footer-contact">
+          <div class="col-lg-4 col-md-12 footer-links">
+           
                 <?php 
-                  $group2=array_filter($footerContent,function($data){
+                  $group3=array_filter($footerContent,function($data){
                       return $data->sectionGroup==3;
                   }); 
-                  foreach($group2 as $content) { ?>
+                  foreach($group3 as $content) { ?>
+                <p><?=$content->content?></p>
+                <?php } ?>
+                 <!-- //footer menü start -->
+            <?php
+                        if((empty($langURL))){
+                            echo '<ul>';
+                            foreach($dataPAGES as $pages){
+                                if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                    echo ' <li><a href="'.$pages->link.'">'.$pages->pagename.'</a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                        }else{
+                          echo '<ul>';
+                            foreach($dataPAGES as $pages){
+                                if(($langURL==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                    echo ' <li><a href="'.$pages->link.'">'.$pages->pagename.'</a></li>';
+                                }
+                            }
+                            echo '</ul>';
+                        }
+                    ?>
+              <!-- footermenu finish -->
+              <?php 
+                  $group4=array_filter($footerContent,function($data){
+                      return $data->sectionGroup==4;
+                  }); 
+                  foreach($group4 as $content) { ?>
                 <p><?=$content->content?></p>
                 <?php } ?>
           </div>

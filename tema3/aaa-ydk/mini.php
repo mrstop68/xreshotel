@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/icon.png" />
-    <title>ResClick Theme | King Suite</title>
-    <meta name="description" content="ResClick Theme" />
+    <title>ResClick Theme | Mini Club</title>
+    <meta name="description" content="ResClick Theme " />
     <meta property="og:locale" content="tr_TR" />
     <meta property="og:url" content="https://resclick.com/" />
     <meta property="og:title" content="ResClick Theme" />
@@ -20,7 +20,9 @@
     <meta name="twitter:description" content="ResClick Theme" />
     <meta name="twitter:title" content="ResClick Theme" />
     <meta name="twitter:site" content="https://resclick.com/" />
+    <meta name="twitter:creator" content="@ResClick" />
     <!-- Link Swiper's CSS -->
+
     <link rel="stylesheet" href="css/swiper-slide.css">
     <style>
         .swiper {
@@ -48,10 +50,12 @@
     <section>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.5),rgba(0,0,0,0)), url('images/home/16.webp'); background-position: center;background-size: cover;">
+                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.5),rgba(0,0,0,0)), url('images/home/21.webp'); background-position: center;background-size: cover;">
+                </div>
+                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.5),rgba(0,0,0,0)), url('images/home/22.webp'); background-position: center;background-size: cover;">
                 </div>
 
-                <span class="roomName">King Suite</span>
+                <span class="roomName">Çocuk Kulubü</span>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -62,87 +66,62 @@
         <div class="roomdetail" data-aos="fade-up">
             <div class="detailcontent">
                 <div class="sub-body detailleft">
-                    <h4>Konaklayın</h4>
-                    <h2>King Suite</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    </p>
-                    <div class="roomPropertySub">
-               
-                        <div class="propertySub">• Neque egestas congue quisque egestas.</div>
-                        <div class="propertySub">• Neque egestas congue quisque egestas.</div>
-                        <div class="propertySub">• Neque egestas congue quisque egestas.</div>
-                        <div class="propertySub">• Neque egestas congue quisque egestas.</div>
+                    <h2>Çocuk Kulubü</h2>
 
+                    <p>Neque egestas congue quisque egestas. Arcu risus quis varius quam quisque id diam vel.
+                    Ornare arcu dui vivamus arcu felis bibendum. Sem et tortor consequat id porta nibh.
+                    </p>
+                    <h6>Çocuk Aktiviteleri</h6>
+                    <div class="PropertySub2">
+                        <div>• Lorem Ipsum</div>
+                        <div>• Lorem Ipsum</div>
+                        <div>• Lorem Ipsum</div>
+                        <div>• Lorem Ipsum</div>
+                        <div>• Lorem Ipsum</div>
+                        <div>• Lorem Ipsum</div>
                     </div>
-                    <hr class="roomhr">
-                    <div class="roomProperty">
-                        <div class="property"><img src="images/area.svg" alt="">Alan: 50 <span>m</span><sup>2</sup></div>
-                        <div class="property"><img src="images/people.svg" alt="">2+1 Kişilik</div>
-                        <div class="property"><img src="images/bed.svg" alt="">1 yatak odası </div>
-                    </div>
-                    <hr class="roomhr">
                 </div>
                 <div class="sub-body detailrigt">
-                    <div><img src="images/home/15.webp" alt=""></div>
+                    <div><img src="images/home/20.webp" alt=""></div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="wifi" data-aos="fade-up">
-            <img src="images/wifi.png" alt=""><span>Wİ-Fİ</span>
         </div>
     </section>
     <section class="multiple-gallery" data-aos="fade-up">
         <div class="lightgallery">
             <h2>
-                King Suite Mini Galeri
+                Çocuk Kulubü Mini Galeri
             </h2>
         </div>
         <div class="cont">
             <div class="demo-gallery">
                 <ul id="lightgallery">
 
-                    <li data-src="images/home/14.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/20.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/14.webp" />
+                            <img class="img-responsive" src="images/home/20.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
-                    <li data-src="images/home/12.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/21.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/12.webp" />
+                            <img class="img-responsive" src="images/home/21.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
-                    <li data-src="images/home/13.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/22.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/13.webp" />
+                            <img class="img-responsive" src="images/home/22.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
-                    <li data-src="images/home/14.webp" data-sub-html="<h4></h4><p></p>">
-                        <a href="">
-                            <img class="img-responsive" src="images/home/14.webp" />
-                            <div class="demo-gallery-poster">
-                                <img src="images/zoom.png" />
-                            </div>
-                        </a>
-                    </li>
-                    <li data-src="images/home/15.webp" data-sub-html="<h4></h4><p></p>">
-                        <a href="">
-                            <img class="img-responsive" src="images/home/15.webp" />
-                            <div class="demo-gallery-poster">
-                                <img src="images/zoom.png" />
-                            </div>
-                        </a>
-                    </li>
+                  
                 </ul>
             </div>
         </div>

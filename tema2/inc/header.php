@@ -47,7 +47,7 @@
                         <?php }  ?>
                         <ul>
                             <?php  
-                                    if(empty($langURL)){// header üzerindeki dili tıklayınca listelenen diller
+                                    if(empty($langURL)){ // header üzerindeki dili tıklayınca listelenen diller
                                         foreach($dataLANG as $langs){ ?>
                                         <?php if(($langs->LangCode)!='mainlang'){ ?>
                                         <li class="flags-li"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img class="flags" src="<?=$imagesLink?><?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
@@ -58,9 +58,9 @@
                                         <?php if((strtolower($langs->LangCode))!=$langURL && ($langs->LangCode)!='mainlang'){ ?>
                                         <li class="flags-li"> <a href="<?=$dataHOTEL->website?>/<?=strtolower($langs->LangCode)?>/" ><img class="flags" src="<?=$imagesLink?><?=$langs->LangLink?>" alt="<?=$seoData->imagetag?>" width="26"> <?=$langs->LangCode?></a></li>
                                         <?php } } } ?>
-                            <?php } //dil menu finish ?> 
-                        </ul>
-                      </li>
+                                    </ul>
+                         </li>
+                     <?php } //dil menu finish ?> 
             </ul>
         </nav>
       </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -21,9 +21,8 @@
     <meta name="twitter:title" content="ResClick Theme" />
     <meta name="twitter:site" content="https://resclick.com/" />
     <meta name="twitter:creator" content="@ResClick" />
-      <!-- Link Swiper's CSS -->
-
-      <link rel="stylesheet" href="css/swiper-slide.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="css/swiper-slide.css">
     <style>
         .swiper {
             width: 100%;
@@ -50,101 +49,88 @@
     <section>
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.2),rgba(0,0,0,0)), url('images/home/8.webp'); background-position: center;background-size: cover;">
+                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.2),rgba(0,0,0,0)), url('images/home/25.webp'); background-position: center;background-size: cover;">
                 </div>
-                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.2),rgba(0,0,0,0)), url('images/home/11.webp'); background-position: center;background-size: cover;">
+                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.2),rgba(0,0,0,0)), url('images/home/23.webp'); background-position: center;background-size: cover;">
+                </div>
+                <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.2),rgba(0,0,0,0)), url('images/home/24.webp'); background-position: center;background-size: cover;">
                 </div>
 
-                <span class="roomName">Slogan</span>
+                <span class="roomName">Lobi Bar</span>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
-    <section style="margin-top: 120px;">
-        <div class="rcontainer" data-aos="fade-down">
-            <div class="acontent">
-                <div class="aheader">
-                    <h4>ANA RESTORAN</h4>
-                    <h2>Lorem ipsum dolor sit amet!</h2>
-                    <div class="aimg" style="background-image:url('images/home/10.webp'); "></div>
-                    <div class="atext">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                         Neque egestas congue quisque egestas.
-                    <br><br>
-                        <div class="columtwo">
-                            <div class="colums">
-                                • Neque egestas congue quisque egestas.<br>
-                                • Neque egestas congue quisque egestas.<br>
-                                • Neque egestas congue quisque egestas.<br>
-                     
-                            </div>
-                            <div class="colums">
-                                • Neque egestas congue quisque egestas.<br>
-                                • Neque egestas congue quisque egestas.<br>
-                            </div>
-                        </div>
+    <section data-aos="fade-up">
+        <div class="roomdetail">
+            <div class="detailcontent">
+                <div class="sub-body detailleft">
+                    <h2>Lobi Bar</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non diam phasellus vestibulum lorem sed risus ultricies tristique nulla. </p>
+                    <h6>Özellikler</h6>
+                    <div class="PropertySub2">
+                        <div> Tempor orci dapibus ultrices in iaculis nunc.</div>
 
                     </div>
                 </div>
+                <div class="sub-body detailrigt">
+                    <div><img src="images/home/24.webp" alt=""></div>
+                </div>
             </div>
-            <div style="margin: 40px 0px;"></div>
-
         </div>
     </section>
 
     <section class="multiple-gallery" data-aos="fade-up">
         <div class="lightgallery">
             <h2>
-               Ana Restoran Mini Galeri
+                Lobi Bar Mini Galeri
             </h2>
         </div>
         <div class="cont">
             <div class="demo-gallery">
                 <ul id="lightgallery">
 
-                    <li data-src="images/home/8.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/23.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/8.webp" />
+                            <img class="img-responsive" src="images/home/23.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
-                    <li data-src="images/home/10.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/24.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/10.webp" />
+                            <img class="img-responsive" src="images/home/24.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
 
-                    <li data-src="images/home/11.webp" data-sub-html="<h4></h4><p></p>">
+                    <li data-src="images/home/25.webp" data-sub-html="<h4></h4><p></p>">
                         <a href="">
-                            <img class="img-responsive" src="images/home/11.webp" />
+                            <img class="img-responsive" src="images/home/25.webp" />
                             <div class="demo-gallery-poster">
                                 <img src="images/zoom.png" />
                             </div>
                         </a>
                     </li>
-                    
-
-
+    
                 </ul>
             </div>
         </div>
     </section>
-   
     <section>
         <div class="colum">
-            <h3>Diğer Restoranlar</h3>
+            <h3>Diğer Barlar</h3>
             <div class="columcontent">
                 <div class="columbody" data-aos="fade-up">
-                    <a href="alacarte-restoran"><img src="images/home/28.webp" alt=""></a>
-                    <h2>Ala Carte Restoran</h2>
+                    <a href="cafebar"><img src="images/home/29.webp" alt=""></a>
+                    <h2>Cafe Bar</h2>
                     <p>Elementum tempus egestas sed sed risus pretium quam. Sed viverra ipsum nunc aliquet bibendum. Id semper risus in hendrerit gravida. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Dui nunc mattis enim ut tellus.</p>
-                    <a href="alacarte-restoran"><button>Daha Fazlası</button></a>
+                    <a href="cafebar"><button>Daha Fazlası</button></a>
                 </div>
 
             </div>

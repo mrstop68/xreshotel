@@ -1,47 +1,88 @@
+<?php 
+        //dil apisindeki verileri (content) dile göre listeleme  
+        foreach($dataLANG as $langContent){
+            if((empty($langURL)) && (strtolower($langContent->LangCode))=='mainlang') {
+                $footerContent=$langContent->content;
+                break;
+            }else if ($langURL==(strtolower($langContent->LangCode))){
+                $footerContent=$langContent->content;
+                break;
+            }
+        }
+        usort($footerContent,function($first,$second){
+            return $first->order - $second->order;
+        });
+        ?>
     <section>
         <footer>
             <div class="footer">
                 <div class="fhead">
                     <ul class="flink">
-                  
-                            <li><a href="konaklama">Odalar </a></li>
-                            <li><a href="restoran">Restoran </a></li>
-                            <li><a href="havuz">Sahil & Havuz </a></li>
-                            <li><a href="spa-wellness">Spa </a></li>
-                            <li><a href="mini">Mini Club </a></li>
-                            <li><a href="galeri">Galeri </a></li>
-                            <li><a href="iletisim">İletişim </a></li>
+                        <!-- //footer menü start -->
+                        <?php
+                            if((empty($langURL))){
+                                foreach($dataPAGES as $pages){
+                                    if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                        echo ' <li><a href="'.$pages->link.'">'.$pages->pagename.'</a></li>';
+                                    }
+                                }
+                            }else{
+                                foreach($dataPAGES as $pages){
+                                    if(($langURL==strtolower($pages->lang)) && $pages->statusMenuFooter!='false'){
+                                        echo ' <li><a href="'.$pages->link.'">'.$pages->pagename.'</a></li>';
+                                    }
+                                }
+                            }
+                        ?>
+                        <!-- footermenu finish -->
                     </ul>
                 </div>
                 <div class="fcontent">
-                    <div class="flogo" data-aos="fade-up"><img src="tema3/images/logo1.png" alt="Logo"> </div>
-                    <div class="fadress" data-aos="fade-up">Adres: Lorem Ipsum</div>
+                    <div class="flogo" data-aos="fade-up"><img src="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->logo->logoname)) echo $dataHOTEL->logo->logoname; ?>" alt="<?=$seoData->imagetag?>"> </div>
+                    <div class="fadress" data-aos="fade-up">
+                    <?php 
+                //aşağıda array_filter ile footercontent dizisini grup numarasına göre süzüyoruz
+                $group1=array_filter($footerContent,function($data){
+                    return $data->sectionGroup==1;
+                });
+                foreach($group1 as $content) { ?>
+                <?=$content->content?>
+                <?php }  ?>
+                    <?=$seoData->adress?></div>
                     <div class="fbody">
                         <div class="finfo" data-aos="fade-up">
                             <ul>
-                                <li>Rezervasyon:<a href="tel:"> "+90 000 000 00 00"</a></li>
-                                <li>Otel:<a href="tel:+"> +90 000 000 00 00</a></li>
-                                <li>E-posta: <a href="mailto:info@.com"> info@resclick.com</a></li>
+                                <li>
+                                <?php     $group1=array_filter($footerContent,function($data){
+                                    return $data->sectionGroup==2;
+                                });
+                                foreach($group1 as $content) { ?>
+                                <?=$content->content?>
+                                <?php }  ?>    
+                                <a href="tel:<?=$dataHOTEL->seoinfo->phone1?>"> <?=$dataHOTEL->seoinfo->phone1?></a></li>
+                                <li>
+                                <?php     $group1=array_filter($footerContent,function($data){
+                                    return $data->sectionGroup==3;
+                                });
+                                foreach($group1 as $content) { ?>
+                                <?=$content->content?>
+                                <?php }  ?>     
+                                <a href="mailto:<?=$dataHOTEL->seoinfo->email?>"> <?=$dataHOTEL->seoinfo->email?></a></li>
                             </ul>
                         </div>
                         <div class="socialcontent ssocials" data-aos="fade-up">
                             <div class="socials fsoci">
                                 <ul>
-                                    <li><a href="https://www.facebook.com" target="_blank"><img src="tema3/images/facebook.svg" alt="Social"></a></li>
-                                    <li><a href="https://www.instagram.com/" target="_blank"><img src="tema3/images/instagram.svg" alt="Social"></a></li>
-                                    <!-- <li><a href=""><img src="tema3/images/twitter.svg" alt="Social"></a></li> -->
+                                    <li><?php if((isset($dataHOTEL->seoinfo->youtube)) && ($dataHOTEL->seoinfo->youtube!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->youtube.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema3/images/social/youtube.svg" alt="'.$seoData->imagetag.'"></a></div>';}?></li>
+                                    <li><?php if(isset($dataHOTEL->seoinfo->facebook) && (($dataHOTEL->seoinfo->facebook)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->facebook.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema3/images/social/facebook.svg" alt="'.$seoData->imagetag.'"></a></div>';}?></li>
+                                    <li><?php if(isset($dataHOTEL->seoinfo->insta) && (($dataHOTEL->seoinfo->insta)!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->insta.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema3/images/social/instagram.svg" alt="'.$seoData->imagetag.'"></a></div>';}?></li>
+                                    <li><?php if(isset($dataHOTEL->seoinfo->twitter) && ($dataHOTEL->seoinfo->twitter!='')){echo '<div class="socialimg"><a href="'.$dataHOTEL->seoinfo->twitter.'" target="_blank"><img src="'.$dataHOTEL->website.'/tema3/images/social/twitter.svg" alt="'.$seoData->imagetag.'"></a></div>';}?></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="fend">
                         <div class=" endleft">
-                            <!-- <ul>
-                                <li>KVKK</li>
-                                <li>Factsheet</li>
-                                <li>Logo</li>
-                                <li>Ulaşım</li>
-                            </ul> -->
                         </div>
                         <div class=" endright">
                             <span class="copyy">Copyright © 2021 All rights reserved |</span><a href="https://resclick.com" target="_blank" alt="ResClick"> <img src="https://resclick.com/images/resclick-logo-white.svg" alt="" width="100"></a>

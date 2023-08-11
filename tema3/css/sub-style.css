@@ -73,7 +73,7 @@
   color: #1d1d1d;
 }
 .propertySub {
-  width: 50%;
+  width: 100%;
   margin-bottom: 8px;
 }
 .roomButton {
@@ -208,26 +208,7 @@
   flex: 30%;
   margin-bottom: -4px;
 }
-.horizontalimg span {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px 12px;
-  background-color: #ac926c;
-  color: #fff;
-  border-radius: 20px;
-}
-.horizontalimg pan {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 5px 12px;
-  background-color: #4f5050;
-  color: #fff;
-  border-radius: 20px;
-}
+
 .horizontalbody {
   background-color: #f4f4f4;
   padding: 12px 22px;
@@ -256,6 +237,26 @@
   color: #fff;
   padding: 6px 12px;
   border-radius: 3px;
+}
+.horizontalbody  span {
+  position: relative;
+  top: -15px;
+  left: 0;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  background-color: #ac926c;
+  color: #fff;
+  border-radius: 20px;
+}
+.horizontalbody pan {
+  position: relative;
+  top: -15px;
+  left: 0;
+  transform: translateX(-50%);
+  padding: 5px 12px;
+  background-color: #4f5050;
+  color: #fff;
+  border-radius: 20px;
 }
 .colum {
   max-width: 1250px;
@@ -324,8 +325,10 @@
 }
 .contactbody {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   box-sizing: content-box;
+  margin: 0 10px;
+  text-align: justify;
 }
 .contactbody div {
   padding: 12px;

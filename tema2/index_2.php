@@ -61,7 +61,7 @@
           <?php
             $n=0;
             foreach($dataIMG as $k=>$img){
-              if($img->slider==true) {?><div class="carousel-item <?php if($n==0) echo 'active'; $n++ ?>">
+              if($img->slider==true) {?><div class="carousel-item <?php if($n==0) echo 'active'; $n++ ?>" >
               <img src="<?=$imagesLink?><?=$img->imgName?>" class="d-block" alt="<?=$seoData->imagetag?>" /></div><?php }
             }
             ?>
@@ -101,7 +101,7 @@
             style="z-index: 1"
           ><br>
           <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('1'), 'groupNumberinContent'));?>
-          <?php  foreach($filtergroupcontent as $content){?>
+          <?php  foreach($filtergroupcontent as $content){?> 
             <p>
               <?=$content->content?>
             </p> <?php    } ?>
@@ -116,7 +116,7 @@
     <?php 
             $num=0;
             foreach($filtergroupcontent as $content){ ?>
-      <section id="main-swiper" class="text-bg-light bg" style= "background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>); background-size: cover;background-position: center;">
+      <section id="main-swiper" class="text-bg-light bg" style= "background:linear-gradient( rgba(0, 0, 0, 0.5) 100%, rgba(0, 0, 0, 0.5)100%),url(<?=$imagesLink?><?php if(isset($newArrayImg[0]->imgName)) echo $newArrayImg[0]->imgName?>); background-size: cover;background-position: center;">
         <div class="container">
           <div class="row text-white py-5">
             <div class="col-md-6" style="overflow: hidden; position: relative">
@@ -144,7 +144,7 @@
         </div>
       </div>
     </section>
-      </p> <?php    } ?>
+      </p> <?php  } ?>
     
     <!-- Room Section -->
     <section class="text-bg-light bg">
@@ -156,7 +156,7 @@
         <div class="row justifyContent">
         <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('4'), 'groupNumberinContent'));
          foreach($filtergroupcontent as $content){?>
-          <div class="col-sm-4 mt-2">
+          <div class="col-md-4 mt-2">
             <div class="card card text-center" style="background-image: url(<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>); background-size: cover;background-position: center;">
               <div class="title">
               <?=$content->content?>

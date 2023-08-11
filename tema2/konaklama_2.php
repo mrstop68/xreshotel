@@ -92,8 +92,9 @@
     <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));?>
     <?php 
         $num=0;
+        $idcapa=1;
         foreach($filtergroupcontent as $content){ ?>
-    <section class="rcontainer section-bg text-bg-light bg">
+    <section class="rcontainer section-bg text-bg-light bg" id="<?=$idcapa?>">
       <div class="container">
         <div class="row justify-content-around gy-4">
 
@@ -123,7 +124,7 @@
         </div>
       </div>
     </section>
-    <?php } ?>
+    <?php $idcapa++; } ?>
 
     <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('3'), 'groupNumberinContent'));?>
     <section>

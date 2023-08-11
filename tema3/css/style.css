@@ -94,11 +94,11 @@ body,
     display: none;
     position: absolute;
     right: 0px;
-    width: 90px;
+    width: 65px;
     z-index: 99;
     background-color: #fff;
     color: #000;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .dropdown-topmenu li {
@@ -132,6 +132,7 @@ body,
     display: block;
     width: 100%;
     position: absolute;
+    margin-top: 6px;
 }
 
 .top-header .containerhead {
@@ -143,7 +144,9 @@ body,
 .top-header .containerhead ul li {
     display: inline-block;
     margin: 2px 16px 0px 16px;
+    font-size: 14px;
     /* min-width: 80px; */
+    cursor: pointer;
 }
 
 .top-header .containerhead ul li img {
@@ -154,7 +157,7 @@ body,
 .top-header .containerhead ul li a {
     text-decoration: none;
     color: #000;
-    font-size: 13px;
+    font-size: 14px;
     cursor: pointer;
     display: block;
 }
@@ -204,11 +207,9 @@ body,
 
 .header-logo img {
     margin: 10px 10px 4px 10px;
-    background: #fff;
-    padding: 12px;
-    border-radius: 10px;
-    margin-left: 30px;
-    max-width: 230px;
+    padding: 5px;
+    border-radius: 2px;
+    max-width: 190px;
 }
 
 header .containerhead {
@@ -284,12 +285,12 @@ header .containerhead {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .flink li {
     list-style: none;
-    min-width: 100px;
+    min-width: 180px;
     margin: 8px 4px;
     /* border: 1px solid #fff; */
     text-align: center;
@@ -338,8 +339,13 @@ header .containerhead {
 @media screen and (max-width: 720px) {
     .fbody {
         display: flex;
-        flex-wrap: nowrap;
         flex-direction: row-reverse;
+    }
+    .header-logo img {
+        max-height: 90px;
+    }
+    .header-logo img {
+        margin: 65px 10px 4px 10px;
     }
 }
 
@@ -349,26 +355,28 @@ header .containerhead {
   text-align: right;
 } */
 
+
 .finfo ul {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: start;
     color: #fff;
     list-style: none;
+    margin: 5px 0 25px 18px
     /* min-width: 340px; */
 }
 
-
-/* .finfo ul li {
-  display: inline-block;
-} */
+.finfo ul li{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 
 .finfo li a {
     color: #ac926c;
     vertical-align: middle;
     margin-right: 18px;
-    text-decoration: none;
+    text-decoration: none;margin-left: 5px;
 }
 
 .fend {
@@ -407,6 +415,9 @@ header .containerhead {
         flex-direction: column;
         align-content: space-around;
         align-items: flex-start;
+    }
+    .dropdown-topmenu {
+        width: 100px;
     }
 }
 
@@ -460,7 +471,7 @@ header .containerhead {
         display: block;
         margin-right: 18px;
         z-index: 78;
-        margin-top: 0px;
+        margin-top: 10px;
     }
     .bar1,
     .bar2,
@@ -629,11 +640,13 @@ header .containerhead {
 .scrollroom {
     position: absolute;
     bottom: 30px;
-    font-size: 18px;
+    font-size: 26px;
     color: #fff;
     font-weight: 400;
 }
-
+.swiper .swiper-wrapper .swiper-slide:last-child .scrollroom:last-child { 
+    transform: rotateY(180deg)
+  }
 .rcontainer {
     max-width: 1100px;
     margin: 0px auto;
@@ -647,13 +660,14 @@ header .containerhead {
 
 .rbody {
     display: flex;
+    flex-wrap: wrap;
     justify-content: stretch;
     align-items: stretch;
     box-sizing: border-box;
 }
 
 .rcontent {
-    width: 50%;
+    width: 47%;
     margin: 20px 20px 20px 0;
     box-sizing: border-box;
     position: relative;
@@ -666,6 +680,8 @@ header .containerhead {
     font-size: 28px;
     font-weight: 500;
     padding-bottom: 12px;
+    position: absolute;
+    top: 0;
 }
 
 .homeButton {

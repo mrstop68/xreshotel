@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
     <meta charset="UTF-8">

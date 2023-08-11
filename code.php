@@ -64,18 +64,24 @@ usort($activePage->content,function($first,$second){
         
         function __construct($parameterValue)
         {
-            $this->val = $parameterValue;
+            $this->parameterValue = $parameterValue;
         }
         function menupageSelect($obj){
-            return ($obj->lang==$this->val);
+            return ($obj->lang==$this->parameterValue);
         }
         function issetTopMenu($obj){
-            return ($obj->subpage==$this->val);
+            return ($obj->subpage==$this->parameterValue);
         }
         function groupNumberinContent($data){
-            return ($data->sectionGroup==$this->val);
+            return ($data->sectionGroup==$this->parameterValue);
         }
+        
     };
+    class ImagesData{
+        function isSlider($slidersImg){
+            return ($slidersImg->slider==true);
+        }
+    }
 
         
 ?>

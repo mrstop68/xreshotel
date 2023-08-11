@@ -206,7 +206,7 @@
   justify-content: center;
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
   border: 1px solid #fff;
-  padding: 27px !important;
+  padding: 21px !important;
   border-radius: 50%;
   background-color: #fff;
 }

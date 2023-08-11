@@ -35,10 +35,11 @@
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
     <?php include 'inc/header.php' ?>
 
-    <div class="img-top" style="background-image:url('<?=$imagesLink?><?=(($dataIMG)[$randIMG]->imgName)?>'")></div>
+    <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$randIMG]->imgName)) echo $newArrayImg[$randIMG]->imgName?>'")></div>
     <section>
         <div class="galericontainer">
             <div class="cheader">
+            <h2><?=$activePage->pagename?></h2>
             </div>
             <div class="">
                 <div class="filter-btns">

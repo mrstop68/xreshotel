@@ -1,37 +1,41 @@
+<?php include 'code.php' ?>
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/icon.png" />
-    <title>ResClick Theme | İletişim</title>
-    <meta name="description" content="ResClick Theme" />
-    <meta property="og:locale" content="tr_TR" />
-    <meta property="og:url" content="https://resclick.com/" />
-    <meta property="og:title" content="ResClick Theme" />
-    <meta property="og:description" content="ResClick Theme" />
-    <meta property="og:site_name" content="ResClick Theme" />
-    <meta name="classification" content="ResClick Theme" />
-    <meta name="abstract" content="ResClick Theme" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="ResClick Theme" />
-    <meta name="twitter:title" content="ResClick Theme" />
-    <meta name="twitter:site" content="https://resclick.com/" />
+    <title><?php if(isset($seoData->title))echo $seoData->title?></title>
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="abstract" content="Hotel Website" />
+    <meta name="twitter:creator" content="@ResClick" />
+    <meta name="twitter:card" content="ResClick" />
+    <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
+    <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
+    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+     <?php  
+        foreach($dataLANG as $data){?>
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <?php
+        }
+    ?> 
     <!-- Link Swiper's CSS -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
     <!-- <link rel="stylesheet" href="css/swiper-slide.css"> -->
     <!-- <link rel="stylesheet" href="css/glide.core.min.css"> -->
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sub-style.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/fonts.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/style.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/sub-style.css">
     <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
-    <link rel="stylesheet" href="css/aos.css" />
-</head>
-
-<body>
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/aos.css" />
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
     <?php include 'inc/header.php' ?>
     <!-- ************************************************************************************ -->
     <section style="margin-top:120px">
@@ -47,10 +51,10 @@
                     <div class="contactinfo">
                         <h6>Neque egestas congue quisque egestas.</h6>
                         <ul>
-                            <li><img src="images/svg/map.svg" alt="" width="13"><span>Adres: Neque egestas congue quisque egestas.</span></li>
-                            <li><img src="images/svg/phone.svg" alt="" width="13"><a href="tel:"><span>Rezervasyon +90 000 000 00 00</span></a></li>
-                            <li><img src="images/svg/phone.svg" alt="" width="13"><a href="tel:"><span>Otel: +90 000 000 00 00</span></a></li>
-                            <li><img src="images/svg/envelope.svg" alt="" width="13"><a href="mailto:"><span>info@resclick.com</span> </a></li>
+                            <li><img src="images/svg/map.svg" alt="<?=$seoData->imagetag?>" width="13"><span>Adres: Neque egestas congue quisque egestas.</span></li>
+                            <li><img src="images/svg/phone.svg" alt="<?=$seoData->imagetag?>" width="13"><a href="tel:"><span>Rezervasyon +90 000 000 00 00</span></a></li>
+                            <li><img src="images/svg/phone.svg" alt="<?=$seoData->imagetag?>" width="13"><a href="tel:"><span>Otel: +90 000 000 00 00</span></a></li>
+                            <li><img src="images/svg/envelope.svg" alt="<?=$seoData->imagetag?>" width="13"><a href="mailto:"><span>info@resclick.com</span> </a></li>
                         </ul>
                     </div>
                     <div class="contactmap">
@@ -97,14 +101,14 @@
         </div>
     </section> -->
     <!-- ************************************************************************************ -->
-
+    <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
 
     <!-- Swiper JS -->
     <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
     <!-- <script src="js/glide.min.js"></script> -->
-    <script src="js/aos.js"></script>
-    <script src="js/script.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema3/js/aos.js"></script>
+    <script src="<?=$dataHOTEL->website?>/tema3/js/script.js"></script>
     <script>
         //animasyon yönetim
         AOS.init({
@@ -114,6 +118,9 @@
             mirror: false,
         });
     </script>
+    <?php include 'widget.php' ?>
+    <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
+    <?php include 'geoip.php' ?>
 </body>
 
 </html>

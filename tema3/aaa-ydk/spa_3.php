@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/icon.png" />
-    <title>ResClick Theme | Genel</title>
-    <meta name="description" content="ResClick Theme" />
-    <meta property="og:locale" content="tr_TR" />
-    <meta property="og:url" content="https://resclick.com/" />
-    <meta property="og:title" content="ResClick Theme" />
-    <meta property="og:description" content="ResClick Theme" />
-    <meta property="og:site_name" content="ResClick Theme" />
-    <meta name="classification" content="ResClick Theme" />
-    <meta name="abstract" content="ResClick Theme" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="ResClick Theme" />
-    <meta name="twitter:title" content="ResClick Theme" />
-    <meta name="twitter:site" content="https://resclick.com/" />
+    <title><?php if(isset($seoData->title))echo $seoData->title?></title>
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="abstract" content="Hotel Website" />
+    <meta name="twitter:creator" content="@ResClick" />
+    <meta name="twitter:card" content="ResClick" />
+    <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
+    <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
+    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+     <?php  
+        foreach($dataLANG as $data){?>
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <?php
+        }
+    ?> 
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/swiper-slide.css">
@@ -29,7 +34,6 @@
             height: 92vh;
             /* height: calc(100vh - 42px); */
         }
-
         .swiper-pagination-bullet-active {
             transform: scale(1.2);
         }
@@ -54,7 +58,7 @@
                 <div class="swiper-slide" style="background-image:linear-gradient(to top,rgba(0,0,0,0.5),rgba(0,0,0,0)), url('images/home/19.webp'); background-position: center;background-size: cover;">
                 </div>
              
-                <span class="roomName">Genel Sayfa</span>
+                <span class="roomName">Spa & Wellness</span>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -68,7 +72,7 @@
                     <h4>Slogan</h4>
                     <hr class="roomhr">
 
-                    <h2>Genel</h2>
+                    <h2>Spa & Wellness</h2>
                     <p>Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Lacus vel facilisis volutpat est velit. Lorem sed risus ultricies tristique nulla aliquet enim.
                         <br>
                         • Sed adipiscing diam donec adipiscing tristique. Purus ut faucibus pulvinar elementum integer enim neque volutpat.<br>
@@ -84,10 +88,10 @@
             </div>
             <div class="detailcontent">
                 <div class="sub-body detailleft">
-                    <h4>Genel</h4>
+                    <h4>Sağlık</h4>
                     <hr class="roomhr">
 
-                    <h2>Slogan</h2>
+                    <h2>Spor</h2>
 
                     <p> Sed adipiscing diam donec adipiscing tristique. <br>
                         • Purus ut faucibus pulvinar elementum integer enim neque volutpat.
@@ -108,7 +112,7 @@
         <div class="lightgallery">
         <br>
             <h2>
-                 Mini Galeri
+                Spa & Wellness Mini Galeri
             </h2>
         </div>
         <div class="cont">

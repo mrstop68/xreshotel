@@ -46,21 +46,18 @@
         <div class="img-top" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[0]->imgName)) echo $newArrayImg[0]->imgName?>')"></div>
     </section>
     <section>
-    <?php 
-            $num=1;
+        <div>
+            <?php $num=1;
             //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
             $group1=array_filter($activePage->content,function($data){
                 return $data->sectionGroup==1;
              });
-            foreach($group1 as $content){
-                ?>
-        <div class="rcontainer">
-            <?=$content->content?>
-        </div>
-
-        <div class="fixedimg2" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>"></div>
-        <?php $num++; } ?>
-       
+            foreach($group1 as $content){ ?>
+            <div class="rcontainer">
+                <?=$content->content?>
+            </div>
+            <div class="fixedimg2" style="background-image:url('<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>'"></div>
+            <?php $num++; } ?>
         </div>
     </section>
     <section>

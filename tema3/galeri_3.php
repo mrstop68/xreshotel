@@ -1,63 +1,71 @@
-<?php
-$rr= count(($dataIMG));
-$randIMG=rand(0,$rr-1);
-?>
+<?php include 'code.php' ?>
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="<?php if(empty($langURL)){echo 'tr';}else{echo $langURL;} ?>">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="tema3/images/icon.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="tema3/images/icon.png" />
-    <title>ResClick Theme | Galeri</title>
-    <meta name="description" content="ResClick Theme " />
-    <meta property="og:locale" content="tr_TR" />
-    <meta property="og:url" content="https://resclick.com/" />
-    <meta property="og:title" content="ResClick Theme" />
-    <meta property="og:description" content="ResClick Theme" />
-    <meta property="og:site_name" content="ResClick Theme" />
-    <meta name="classification" content="ResClick Theme" />
-    <meta name="abstract" content="ResClick Theme" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="ResClick Theme" />
-    <meta name="twitter:title" content="ResClick Theme" />
-    <meta name="twitter:site" content="https://resclick.com/" />
+    <title><?php if(isset($seoData->title))echo $seoData->title?></title>
+    <link rel="apple-touch-icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname)) echo $dataHOTEL->icon->iconname?>" />
+    <link rel="icon" href="<?=$imagesLink?>logo/<?php if(isset($dataHOTEL->icon->iconname))echo $dataHOTEL->icon->iconname?>" />
+    <meta name="description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+    <meta property="og:site_name" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="classification" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta name="abstract" content="Hotel Website" />
     <meta name="twitter:creator" content="@ResClick" />
+    <meta name="twitter:card" content="ResClick" />
+    <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
+    <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
+    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
+    <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
+     <?php  
+        foreach($dataLANG as $data){?>
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <?php
+        }
+    ?> 
     <!-- Link Swiper's CSS -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-    <link rel="stylesheet" href="tema3/css/swiper-slide.css">
-    <link rel="stylesheet" href="tema3/css/glide.core.min.css">
-    <link rel="stylesheet" href="tema3/css/fonts.css">
-    <link rel="stylesheet" href="tema3/css/style.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/swiper-slide.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/glide.core.min.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/fonts.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/style.css">
     <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> -->
-    <link rel="stylesheet" href="tema3/css/lightgallery.css">
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/lightgallery.css">
     <!-- <link rel="stylesheet" href="tema3/css/gallery.css"> -->
+    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
 
-</head>
 
-<body>
     <?php include 'inc/header.php' ?>
     <section>
         <!-- ************************************************************************************ -->
         <section class="portfolio" id="portfolio" style="margin-top: 120px;">
             <div class="galericontainer">
                 <div class="cheader">
-                    <h2>Galeri</h2>
+                <h2><?=$activePage->pagename?></h2><br>
                 </div>
                 <div class="">
-                    <div class="filter-btns">
-                        <button class="filter-button" data-filter="all">Hepsi</button>
-                        <?php
-                        $valuesHotel = array_values($dataHOTEL->categoryimg);
-                        foreach($valuesHotel as $val){
-                            //  echo strtolower(str_replace([' ','&','_','-','?','^','%'],'',$val));
-                             echo ' <button class="filter-button" data-filter="'.(str_replace([' ','&','_','-','?','^','%'],'',$val)).'">'.$val.'</button> ';
+                <div class="filter-btns">
+                     <!-- //dil apisindeki verileri (categoryimg) dile göre listeleme -->
+                    <?php  foreach($dataLANG as $langContent){
+                        if((empty($langURL)) && (strtolower($langContent->LangCode))=='mainlang') {
+                            $dataLangActivePage=$langContent->categoryimg;
+                            break;
+                        }else if ($langURL==(strtolower($langContent->LangCode))){
+                            $dataLangActivePage=$langContent->categoryimg;
+                            break;
                         }
-                    
-                    ?>
-                    </div>
+                    }
+                    $valuesHotel = array_values($dataLangActivePage);  ?>
+                        <button class="filter-button" data-filter="all"><?php echo current($valuesHotel)?></button>
+                        <?php array_shift($valuesHotel);  
+                        foreach($valuesHotel as $val){
+                                //  echo strtolower(str_replace([' ','&','_','-','?','^','%'],'',$val));
+                                echo ' <button class="filter-button" data-filter="'.(str_replace([' ','&','_','-','?','^','%'],'',$val)).'">'.$val.'</button> ';
+                            } ?>
+                </div>
                 </div>
             </div>
 
@@ -73,11 +81,11 @@ $randIMG=rand(0,$rr-1);
                                     foreach($vals as $valonly){
                                     $valonly=(str_replace([' ','&','_','-','?','^','%'],'',$valonly));
                                         if($valonly==$HotelCategory){?>
-                                            <li class="gallery_product filter <?php echo $HotelCategory ?>" data-src="<?=$apiURL?>/img/<?=$valimg->imgName; ?>">
+                                            <li class="gallery_product filter <?php echo $HotelCategory ?>" data-src="<?=$imagesLink?><?=$valimg->imgName; ?>">
                                            <a href="">
-                                           <img class="img-responsive" src="<?=$apiURL?>/img/<?=$valimg->imgName; ?>" />
+                                           <img class="img-responsive" src="<?=$imagesLink?><?=$valimg->imgName; ?>" alt="<?=$seoData->imagetag?>"/>
                                            <div class="demo-gallery-poster">
-                                               <img src="tema3/images/zoom.png" />
+                                               <img src="<?=$dataHOTEL->website?>/tema1/images/zoom.png" />
                                            </div>
                                        </a>
                                    </li>
@@ -92,15 +100,15 @@ $randIMG=rand(0,$rr-1);
             </div>
         </section>
         <!-- ************************************************************************************ -->
-
+        <?php include 'global_html.php' ?>
         <?php include 'inc/footer.php' ?>
         <!-- Swiper JS -->
-        <script src="tema3/js/jquery-3.2.1.min.js"></script>
+        <script src="<?=$dataHOTEL->website?>/tema3/js/jquery-3.2.1.min.js"></script>
         <!-- <script src="tema3/js/swiper-bundle.min.js"></script> -->
         <!-- <script src="tema3/js/glide.min.js"></script> -->
         <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
-        <script src="tema3/js/script.js"></script>
-        <script>
+        <script src="<?=$dataHOTEL->website?>/tema3/js/script.js"></script>
+        <!-- <script>
             //animasyon yönetim
             AOS.init({
                 offset: 100,
@@ -108,7 +116,7 @@ $randIMG=rand(0,$rr-1);
                 duration: 800,
                 mirror: false,
             });
-        </script>
+        </script> -->
         <script>
             /*	gallery */
             $(document).ready(function() {
@@ -132,10 +140,13 @@ $randIMG=rand(0,$rr-1);
             });
             /*	end gallery */
         </script>
-        <script src="tema3/js/lightgallery.js"></script>
+        <script src="<?=$dataHOTEL->website?>/tema3/js/lightgallery.js"></script>
         <script>
             lightGallery(document.getElementById('lightgallery'))
         </script>
+        <?php include 'widget.php' ?>
+    <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
+    <?php include 'geoip.php' ?>
 </body>
 
 </html>

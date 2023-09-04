@@ -25,25 +25,8 @@
             <?php
         } ?> 
     <!-- Link Swiper's CSS -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/swiper-slide.css">
-    <style>
-        .swiper {
-            width: 100%;
-            height: 92vh;
-        }
-
-        .swiper-pagination-bullet-active {
-            transform: scale(1.2);
-        }
-      
-    </style>
-    <!-- <link rel="stylesheet" href="css/glide.core.min.css"> -->
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/fonts.css">
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/style.css">
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/sub-style.css">
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/aos.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/lightgallery.css">
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
     <?php include 'inc/header.php' ?>
     <!-- ************************************************************************************ -->
@@ -75,54 +58,7 @@
     <!-- ************************************************************************************ -->
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
-
-    <!-- Swiper JS -->
-    <script src="<?=$dataHOTEL->website?>/tema3/js/swiper-bundle.min.js"></script>
-    <script>
-        // homepage first slider 
-        var swiper = new Swiper(".mySwiper", {
-            // spaceBetween: 15,
-            // centeredSlides: true,
-            loop: true,
-            grabCursor: true,
-            speed: 1200,
-            effect: "creative",
-            creativeEffect: {
-                prev: {
-                    shadow: true,
-                    translate: ["-20%", 0, -1],
-                },
-                next: {
-                    translate: ["100%", 0, 0],
-                },
-            },
-
-            // cssMode: true,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-
-            //mousewheel: true,
-            keyboard: true,
-        });
-    </script>
-    <!-- <script src="js/glide.min.js"></script> -->
-    <script src="<?=$dataHOTEL->website?>/tema3/js/aos.js"></script>
-    <script>
-        //animasyon yönetim
-        AOS.init({
-            offset: 100,
-            // delay:5000,
-            duration: 800,
-            mirror: false,
-        });
-    </script>
     <script src="<?=$dataHOTEL->website?>/tema3/js/script.js"></script>
-    <script src="<?=$dataHOTEL->website?>/tema3/js/lightgallery.js"></script>
-    <script>
-        lightGallery(document.getElementById('lightgallery'))
-    </script>
     <?php include 'widget.php' ?>
     <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
     <?php include 'geoip.php' ?>

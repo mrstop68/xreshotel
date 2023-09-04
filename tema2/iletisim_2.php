@@ -76,7 +76,7 @@
             $filtergroupcontent = array_values($filtergroupcontent);
             ?>
               <p> <?=$filtergroupcontent[0]->content?></p>
-              <h6><a href="tel:<?=$dataHOTEL->seoinfo->phone1?>"><?=$dataHOTEL->seoinfo->phone2?></h6></a>
+              <h6><a href="tel:<?=$dataHOTEL->seoinfo->phone2?>"><?=$dataHOTEL->seoinfo->phone2?></h6></a>
 
               <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('5'), 'groupNumberinContent'));?>
               <?php foreach($filtergroupcontent as $content){ ?>

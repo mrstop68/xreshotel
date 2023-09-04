@@ -325,7 +325,6 @@
 }
 .contactbody {
   display: flex;
-  flex-direction: column;
   box-sizing: content-box;
   margin: 0 10px;
   text-align: justify;
@@ -352,9 +351,11 @@
 }
 .contactbody ul li {
   list-style: none;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #ac926c;
+  padding-bottom: 12px;
 }
 .contactbody ul li span {
   display: inline-block;

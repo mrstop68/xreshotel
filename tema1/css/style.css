@@ -356,7 +356,13 @@ li a:hover {
         background-attachment: scroll;
     }
 }
-
+/* @media not all and (min-resolution: .001dpcm) { 
+    @supports (-webkit-appearance:none) {
+      .container
+        flex-direction: column;
+        }
+    }
+  } */
 .containerr {
     max-width: 1200px;
     margin: 0px auto;
@@ -1083,3 +1089,8 @@ hr {
     border-radius: 2px;
     background: #fff;
 }
+
+
+
+
+

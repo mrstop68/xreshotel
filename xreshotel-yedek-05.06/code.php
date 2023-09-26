@@ -1,9 +1,10 @@
 <?php
-// pages apisindeki içerik(content) alanlarını sayfaya göre listeleme
+// pages apisindeki içerik(content) alanlarını sayfaya göre listeleme 
 if((empty($_GET['lang']))){
     foreach($dataPAGES as $pages){
         if((strtolower($dataHOTEL->LangCode)==strtolower($pages->lang)) && ($pages->link==$locationURL)){ //url de dil kodu yoksa 
             $activePageName=$pages->pagename; //aktif sayfayı bulup aşağıda resimleri sayfaya göre süzme
+            $activeLinkedPage=$pages->linkedpage; //aktif sayfayı balı olduğu linki alma
             $activePage=$pages; //ilgili sayfadaki tüm bilgiler içerik, link,vs
         }
     }
@@ -12,6 +13,7 @@ else{
     foreach($dataPAGES as $pages){
         if(($_GET['lang']==strtolower($pages->lang)) && ($pages->link==$locationURL)){ // url de dil kodu varsa
             $activePageName=$pages->pagename; //aktif sayfayı bulup aşağıda resimleri sayfaya göre süzme
+            $activeLinkedPage=$pages->linkedpage; //aktif sayfayı balı olduğu linki alma
             $activePage=$pages; //ilgili sayfadaki tüm bilgiler içerik, link,vs
         }
     }
@@ -30,12 +32,12 @@ else{
 usort($activePage->content,function($first,$second){
     return $first->order - $second->order;
 });
-//images apisindeki Anasayfa resimleri
+//images apisindeki aktif sayfa resimlerini tespit etme
         $newArrayImg=[];
         $filtered_img = array_filter(
         $dataIMG,
         function($objimg){
-            return (in_array($GLOBALS['activePageName'],$objimg->pagesimg));
+            return (in_array($GLOBALS['activeLinkedPage'],$objimg->pagesimg));
         });
         //aşağıda, yukarıda seçilen resimler arasında index sıralaması karışık olduğu için
         //tekrar index i 0 dan başlatıp birer artırarak diziye eklemek için yazıldı
@@ -57,4 +59,31 @@ usort($activePage->content,function($first,$second){
                     break;
                 }
             }
+
+    // Bu class otele ait tüm dildeki sayfalar çekildikten sonra buraya gönderilen dile göre sayfaları filtreleyip geri gönderir
+    class FilterPagesToLangCode{
+        private $parameterValue;
+        
+        function __construct($parameterValue)
+        {
+            $this->parameterValue = $parameterValue;
+        }
+        function menupageSelect($obj){
+            return ($obj->lang==$this->parameterValue);
+        }
+        function issetTopMenu($obj){
+            return ($obj->subpage==$this->parameterValue);
+        }
+        function groupNumberinContent($data){
+            return ($data->sectionGroup==$this->parameterValue);
+        }
+        
+    };
+    class ImagesData{
+        function isSlider($slidersImg){
+            return ($slidersImg->slider==true);
+        }
+    }
+
+        
 ?>

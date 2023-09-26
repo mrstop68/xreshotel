@@ -138,6 +138,29 @@ foreach($filtergroupcontent as $content){ ?>
 </div>
 </section>
 <?php $swiperNum++; $bigSliderNunber+=2; $thumbSliderNunber+=2; } ?>
+
+      <section>
+          <div class="tcontainer">
+            <div class="tesisbody">
+                <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('2'), 'groupNumberinContent'));
+                foreach($filtergroupcontent as $content){ ?>
+                <div class="tcontent">
+                    <div class="roomPropertySub facilityline">
+                      <?=$content->content?>
+                    </div>
+                </div>
+                <?php $n++; } ?>
+            </div>
+        </div>
+        <div class="tcontainer">
+                <?php $filtergroupcontent=array_filter($activePage->content, array(new FilterPagesToLangCode('3'), 'groupNumberinContent'));
+                foreach($filtergroupcontent as $content){ ?>
+                 <br><br>
+                <p><?=$content->content?></p>
+                <br><br>
+                <?php $n++; } ?>
+            </div>
+    </section>
 <input type="text" name="swipernumber" value="<?=$swiperNum?>" id="swipernumber" hidden>
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>

@@ -1,7 +1,7 @@
 <?php
 $apiURL="http://localhost:3000"; 
-$hotelid="64b8f725c58c57d02b2ff3ad"; //tema3
-// $hotelid="6479f33add6a381872c3207e"; //tema 2
+// $hotelid="64b8f725c58c57d02b2ff3ad"; //tema3
+$hotelid="6479f33add6a381872c3207e"; //tema 2 
 
 // $apiURL="https://micro-panel-api.resclick.com"; 
 // $hotelid="6450bc8547b84b85dfa4150f";

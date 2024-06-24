@@ -1,10 +1,11 @@
 <?php
-$apiURL="http://localhost:3000"; 
+// $apiURL="http://localhost:3000"; 
+// $hotelid="651e7d67738363d7b8bfdfa3"; //tema1
 // $hotelid="64b8f725c58c57d02b2ff3ad"; //tema3
-$hotelid="6479f33add6a381872c3207e"; //tema 2 
+// $hotelid="6479f33add6a381872c3207e"; //tema 2 
 
-// $apiURL="https://micro-panel-api.resclick.com"; 
-// $hotelid="6450bc8547b84b85dfa4150f";
+$apiURL="http://micro-panel-api.resclick.com";
+$hotelid="661c49b9a1cff63d0a8d2380";
 
 $panelURL="https://webpanel.resclick.com";
 $imagesLink='https://webpanel-cdn1.resclick.com/';

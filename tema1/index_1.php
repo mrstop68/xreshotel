@@ -30,16 +30,37 @@
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/swiper-slide.css">
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema1/css/style.css">
     <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
-        
+        <!-- <style>
+            .swiper-slide{
+               
+            }
+            .swiper-slide img{
+                width: 100%;
+                height: calc(100% - 45px);
+                object-fit: cover;
+            }
+            @media screen and (max-width: 900px) {
+                .swiper-slide img{
+                width: 100%;
+                height: calc(100% - 45px);
+                object-fit: fill;
+            }
+            }
+        </style> -->
     <?php include 'inc/header.php' ?>
 
     <section>
         <!-- Swiper -->
         <div class="swiper mySwiper swiperroom">
             <div class="swiper-wrapper">
+                <!-- <?php
+                foreach($dataIMG as $k=>$img){
+                        // if( $img->slider ) {echo  '<div class="swiper-slide" style="background-image: url('.$imagesLink.$img->imgName.'); background-position: center;background-size: cover;"></div>';}
+                        if($img->slider === true) {?><div class="swiper-slide"><img src="<?=$imagesLink?><?=$img->imgName?>" alt="<?=$seoData->imagetag?>"></div> <?php }
+                }
+                ?> -->
                 <?php
                 foreach($dataIMG as $k=>$img){
-                        // if( $img->slider ) {echo  '<div class="swiper-slide" style="background-image: url('.$imagesLink.'//img/'.$img->imgName.'); background-position: center;background-size: cover;"></div>';}
                         if($img->slider === true) {?><div class="swiper-slide" style="background-image: url('<?=$imagesLink?><?=$img->imgName?>'); background-position: center;background-size: cover;"></div> <?php }
                 }
                 ?>
@@ -72,21 +93,21 @@
             <?php  $num++;  } ?>
         <section>
             <div class="wrapperContainer">
-            <?php 
-            //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
-            $group2=array_filter($activePage->content,function($data){
-                return $data->sectionGroup==2;
-             });
-                    foreach($group2 as $content){
-                ?>
+                <?php 
+                //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz
+                $group2=array_filter($activePage->content,function($data){
+                    return $data->sectionGroup==2;
+                });
+                        foreach($group2 as $content){
+                    ?>
                     <div class="wcontent"><img src="<?=$imagesLink?><?php if(isset($newArrayImg[$num]->imgName)) echo $newArrayImg[$num]->imgName?>" alt="<?=$seoData->imagetag?>">
                             <div class="wbody">
                                 <h3><?=$content->content?></h3>
                             </div>
                     </div>
                     <?php $num++; } ?>
-                </div>
-    </section>
+            </div>
+        </section>
     <section>
     <?php 
     //aşağıda array_filter ile content dizisini grup numarasına göre süzüyoruz

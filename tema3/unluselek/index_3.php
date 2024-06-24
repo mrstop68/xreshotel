@@ -17,24 +17,24 @@
     <meta name="twitter:card" content="ResClick" />
     <meta property="og:site_name" content="<?=$dataHOTEL->name?>" />
     <meta property="og:locale" content="<?php if(isset($seoData->LangCode))echo $seoData->LangCode?>" />
-    <meta property="og:url" content="<?=$dataHOTEL->website?>"/>
+    <meta property="og:url" content="/"/>
     <meta property="og:title" content="<?php if(isset($seoData->title))echo $seoData->title?>" />
     <meta property="og:description" content="<?php if(isset($seoData->description))echo $seoData->description?>" />
      <?php  
         foreach($dataLANG as $data){?>
-            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="<?=$dataHOTEL->website?>/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
+            <link rel="alternate" hreflang="<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;} ?>" href="/<?php if( $data->LangCode=='mainlang' ){echo $dataHOTEL->LangCode; } else {echo $data->LangCode;}?>/" />
             <?php
         }
 
     ?> 
     <!-- Link Swiper's CSS -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/fonts.css">
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/style.css">
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/swiper-slide.css">
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/glide.core.min.css">
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/tema3/css/aos.css" />
-    <link rel="stylesheet" href="<?=$dataHOTEL->website?>/global_style.css">
+    <link rel="stylesheet" href="/tema3/css/fonts.css">
+    <link rel="stylesheet" href="/tema3/css/style.css">
+    <link rel="stylesheet" href="/tema3/css/swiper-slide.css">
+    <link rel="stylesheet" href="/tema3/css/glide.core.min.css">
+    <link rel="stylesheet" href="/tema3/css/aos.css" />
+    <link rel="stylesheet" href="/global_style.css">
     <?php include "inc/header.php" ?>
     <section>
         <!-- Swiper -->
@@ -172,10 +172,10 @@
     <?php include 'global_html.php' ?>
     <?php include "inc/footer.php" ?>
     <!-- Swiper JS -->
-    <script src="<?=$dataHOTEL->website?>/tema3/js/swiper-bundle.min.js"></script>
-    <script src="<?=$dataHOTEL->website?>/tema3/js/glide.min.js"></script>
-    <script src="<?=$dataHOTEL->website?>/tema3/js/script-slide.js"></script>
-    <script src="<?=$dataHOTEL->website?>/tema3/js/aos.js"></script>
+    <script src="/tema3/js/swiper-bundle.min.js"></script>
+    <script src="/tema3/js/glide.min.js"></script>
+    <script src="/tema3/js/script-slide.js"></script>
+    <script src="/tema3/js/aos.js"></script>
     <script>
         //animasyon yönetim
         AOS.init({
@@ -184,9 +184,9 @@
             mirror: false,
         });
     </script>
-    <script src="<?=$dataHOTEL->website?>/tema3/js/script.js"></script>
+    <script src="/tema3/js/script.js"></script>
     <?php include 'widget.php' ?>
-    <script src="<?=$dataHOTEL->website?>/global_script.js"></script>
+    <script src="/global_script.js"></script>
     <?php include 'geoip.php' ?>
 </body>
 

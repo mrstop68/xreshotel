@@ -150,7 +150,7 @@ li a:hover {
     display: none;
 }
 
-@media screen and (max-width: 1510px) {
+@media screen and (max-width: 1200px) {
     .nav-container {
         position: fixed;
         display: none;

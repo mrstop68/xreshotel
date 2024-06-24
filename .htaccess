@@ -2,3 +2,36 @@ RewriteEngine On
 RewriteRule  ^([0-9a-zA-Z-_/]+)/([0-9a-zA-Z-_/]+)$ index.php?lang=$1&page=$2 [NC,L]
 RewriteRule  ^([0-9a-zA-Z-_/]+)/$ index.php?lang=$1 [NC,L]
 RewriteRule  ^([0-9a-zA-Z-_/]+)$ index.php?page=$1 [NC,L]
+
+
+
+
+
+
+
+#RewriteEngine On
+
+# Dil kodları listesini tanımlayın
+#SetEnvIf Request_URI "^/(en|de|fr|es|it|ru|ar|jp)" lang=$1
+
+# Dil koduna göre yönlendirme
+#RewriteCond %{ENV:lang} (en|de|fr|es|it|ru|ar|jp)
+#RewriteRule ^([a-zA-Z]{2})/([0-9a-zA-Z-_/]+)$ index.php?lang=%1&page=$2 [NC,L]
+
+# Türkçe sayfalar için yönlendirme
+#RewriteRule ^guncel/([0-9a-zA-Z-_/]+)$ index.php?lang=tr&page=$1 [NC,L]
+
+# Dil kodu olmadan genel sayfalar için yönlendirme
+#RewriteRule ^([0-9a-zA-Z-_/]+)$ index.php?page=$1 [NC,L]
+
+
+
+#RewriteEngine On
+
+# Dil kodları listesini tanımlayın
+#RewriteCond %{REQUEST_URI} ^/(en|de|fr|es|it|ru|ar|jp)/ [NC]
+#RewriteRule ^([a-zA-Z]{2})/([0-9a-zA-Z-_/]+)$ index.php?lang=$1&page=$2 [NC,L]
+
+# Eğer dil kodu varsa yönlendirme yap
+#RewriteCond %{REQUEST_URI} !^/(en|de|fr|es|it|ru|ar|jp)/ [NC]
+#RewriteRule ^([0-9a-zA-Z-_/]+)$ index.php?page=$1 [NC,L]

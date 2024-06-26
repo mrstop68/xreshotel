@@ -75,13 +75,26 @@ usort($activePage->content,function($first,$second){
         function groupNumberinContent($data){
             return ($data->sectionGroup==$this->parameterValue);
         }
-        
+        function langFind($data){
+            if(empty($this->parameterValue))$this->parameterValue='mainlang';
+            return strtolower($data->LangCode)==$this->parameterValue;
+        }
+        function popupSelect($popupdata){
+            $fromDate = DateTime::createFromFormat('Y/m/d',  $popupdata->fromTime);
+            $toDate = DateTime::createFromFormat('Y/m/d',$popupdata->toTime);
+            if($this->parameterValue > $fromDate && $this->parameterValue < $toDate){
+                return true;
+            }else{
+                return false;
+            }
+        }
     };
     class ImagesData{
         function isSlider($slidersImg){
             return ($slidersImg->slider==true);
         }
     }
+
 
         
 ?>

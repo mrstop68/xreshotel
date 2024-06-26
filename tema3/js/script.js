@@ -23,4 +23,20 @@
             }
             
         }
-        
+        // for popup
+document.addEventListener("DOMContentLoaded", function() {
+    function Close() {
+      popupWrapper.classList.add("none");
+    }
+  const popupWrapper = document.querySelector(".popupWrapper");
+  const wrapper = document.getElementById("wrapper_popup");
+  const popup = document.getElementById("maxui_popup");
+  const close = document.getElementById("maxui_close");
+  
+  if(wrapper){
+  wrapper.addEventListener("click", () => Close());
+  }
+  if(close){
+    close.addEventListener("click", () => Close());
+    }
+  });

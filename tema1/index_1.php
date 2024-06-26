@@ -53,14 +53,10 @@
         <!-- Swiper -->
         <div class="swiper mySwiper swiperroom">
             <div class="swiper-wrapper">
-                <!-- <?php
-                foreach($dataIMG as $k=>$img){
-                        // if( $img->slider ) {echo  '<div class="swiper-slide" style="background-image: url('.$imagesLink.$img->imgName.'); background-position: center;background-size: cover;"></div>';}
-                        if($img->slider === true) {?><div class="swiper-slide"><img src="<?=$imagesLink?><?=$img->imgName?>" alt="<?=$seoData->imagetag?>"></div> <?php }
-                }
-                ?> -->
+               
                 <?php
                 foreach($dataIMG as $k=>$img){
+                    
                         if($img->slider === true) {?><div class="swiper-slide" style="background-image: url('<?=$imagesLink?><?=$img->imgName?>'); background-position: center;background-size: cover;"></div> <?php }
                 }
                 ?>
@@ -128,6 +124,35 @@
         </div>
         <?php $num++; } ?>
     </section>
+    <!-- popup start -->
+    <?php $langFind=array_filter($dataLANG, array(new FilterPagesToLangCode($langURL), 'langFind'));
+    $langFind = array_values($langFind);
+    ?>
+    
+        <?php $today = new DateTime(); $popupInfo=array_filter($langFind[0]->popup, array(new FilterPagesToLangCode($today), 'popupSelect'));?>
+        <?php if(!empty($popupInfo)){ ?>
+    <div class="popupWrapper">
+      <div id="wrapper_popup">
+        <div id="maxui_popup">
+          <button class="close-button" id="maxui_close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="#ffffff"
+            >
+              <path
+                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+              />
+            </svg>
+          </button>
+          <img src="<?php foreach ($popupInfo as $popup){echo $imagesLink.'popup/'.$popup->imageName;} ?>" />
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+    <!-- popup finish -->
     <?php include 'global_html.php' ?>
     <?php include 'inc/footer.php' ?>
     <script src="<?=$dataHOTEL->website?>/tema1/js/script.js"></script>
